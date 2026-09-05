@@ -91,7 +91,7 @@ Tôi muốn AI phân tích dữ liệu IoT và lịch sử bảo trì để dự
 * **Yêu cầu liên quan:** FR-007  
 * **Business Rule liên quan:** BR-004; BR-005; BR-011  
 * **Use Case liên quan:** UC-007  
-* **Mức ưu tiên:** Tối quan trọng  
+* **Mức ưu tiên:** Quan trọng  
 * **Phụ thuộc:** Đăng nhập hệ thống (FR-001); nguồn phát sinh hợp lệ từ yêu cầu Customer (FR-002), cảnh báo IoT (FR-005), hoặc dự đoán AI (FR-006); Technician hợp lệ trong hệ thống.
 
 ## **US-008 — Xem Work Order được giao**
@@ -103,7 +103,7 @@ Tôi muốn AI phân tích dữ liệu IoT và lịch sử bảo trì để dự
 * **Yêu cầu liên quan:** FR-008  
 * **Business Rule liên quan:** BR-004; BR-011  
 * **Use Case liên quan:** UC-008  
-* **Mức ưu tiên:** Tối quan trọng  
+* **Mức ưu tiên:** Quan trọng  
 * **Phụ thuộc:** Đăng nhập hệ thống (FR-001); Work Order đã được Facility Manager tạo và phân công (US-007).
 
 ## **US-009 — Cập nhật kết quả kiểm tra và sửa chữa**
