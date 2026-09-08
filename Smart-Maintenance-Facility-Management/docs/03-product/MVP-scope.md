@@ -1,3 +1,0 @@
-# MVP Scope
-
-> TODO

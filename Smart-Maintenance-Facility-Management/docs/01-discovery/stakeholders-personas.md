@@ -1,3 +1,0 @@
-# Stakeholders & Personas
-
-> TODO

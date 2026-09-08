@@ -1,3 +1,0 @@
-# Constraints & Assumptions
-
-> TODO

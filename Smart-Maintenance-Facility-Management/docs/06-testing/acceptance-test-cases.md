@@ -1,3 +1,0 @@
-# Acceptance Test Cases
-
-> TODO
