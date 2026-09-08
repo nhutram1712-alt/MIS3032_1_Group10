@@ -1,3 +1,0 @@
-# Pain Points & Insights
-
-> TODO
