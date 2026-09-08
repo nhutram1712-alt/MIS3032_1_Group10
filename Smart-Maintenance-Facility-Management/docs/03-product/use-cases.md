@@ -1,6 +1,4 @@
 # Use Cases
-# Use Cases
-
 ## 1. Overview
 
 ### 1.1. Purpose
