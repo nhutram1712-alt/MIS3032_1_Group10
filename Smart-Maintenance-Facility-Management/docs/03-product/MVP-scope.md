@@ -1,5 +1,4 @@
 # MVP Scope
-## MVP Scope
 
 ### 1. Objective
 MVP của **Smart Maintenance & Facility Management System** tập trung xây dựng một hệ thống quản lý bảo trì cơ sở vật chất cho Trường Đại học Kinh tế – Đại học Đà Nẵng, kết hợp:
