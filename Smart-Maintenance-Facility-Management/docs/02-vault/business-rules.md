@@ -1,5 +1,4 @@
 # Business Rules
-# Business Rules
 
 > **Project:** Smart Maintenance & Facility Management
 > **Organization:** Trường Đại học Kinh tế – Đại học Đà Nẵng
