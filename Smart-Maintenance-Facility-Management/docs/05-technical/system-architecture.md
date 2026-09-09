@@ -25,6 +25,33 @@ Hệ thống Smart Maintenance Facility Management được thiết kế theo ki
     DB -->|IoT Data + History| AI_Engine
     AI_Engine -->|Risk: Low/Med/High| Logic
 
+### ADR-002: Tách AI Prediction Service thành Microservice độc lập (Python FastAPI)
+
+- **Decision**: AI Predictive Maintenance được triển khai như một microservice
+  Python (FastAPI) riêng biệt, giao tiếp với Backend C# ASP.NET Core qua HTTP
+  nội bộ (Backend gọi định kỳ bằng Cronjob), thay vì nhúng logic scoring/ML
+  trực tiếp vào Backend.
+- **Trade-off & Rationale (Lý do)**:
+  - Phương án thay thế là viết toàn bộ logic rule-based/ML ngay trong C#
+    Backend: tận dụng một stack duy nhất, không cần deploy/monitor thêm một
+    service, không phát sinh network call và cơ chế retry/timeout giữa 2 hệ
+    thống.
+  - Tuy nhiên, hệ sinh thái AI/ML (pandas, scikit-learn, PyTorch...) tập
+    trung ở Python; ML.NET trong C# còn hạn chế. Nếu sau MVP nhóm nâng cấp
+    từ rule-based/threshold đơn giản lên mô hình ML thật, đã có sẵn service
+    Python giúp không phải viết lại từ đầu.
+  - Tách microservice giúp AI service fail độc lập mà không làm sập Backend
+    — đúng như Alternate Path đã mô tả trong US-06-01: *"AI Service trả lỗi
+    hoặc timeout → Backend không lưu kết quả không hợp lệ, giữ nguyên Risk
+    cũ"*. Nếu AI logic nằm chung process với Backend, một lỗi ở đây có nguy
+    cơ ảnh hưởng tới toàn bộ API.
+  - Đánh đổi chấp nhận: thêm 1 network hop, thêm 1 service phải log/deploy
+    riêng, cần auth service-to-service (API Key nội bộ) thay vì JWT user.
+  - Đánh đổi này hợp lý cho MVP vì scope AI hiện tại (rule-based + dữ liệu
+    mẫu theo ASM-05) còn đơn giản, nhưng vẫn giữ đường nâng cấp rõ ràng cho
+    giai đoạn sau.
+- **Status**: Approved.
+
 ## 4. Sơ đồ kiến trúc (Architecture Diagram)
 
 ```mermaid
