@@ -43,5 +43,16 @@ Tài liệu này định nghĩa giao tiếp giữa Client (React/Vue/...) và Ba
 | POST   | `/api/work-orders`      | FacilityManager | `{ "requestId": 1, "technicianId": 2, "assetId": 1 }` | `201 Created` |
 | PATCH  | `/api/work-orders/{id}` | Technician      | `{ "status": "Completed", "rejectionReason": "" }`    | `200 OK`      |
 
+## 5. IoT Monitoring
+| Method | Endpoint | Auth Level | Request Payload | Response |
+|---|---|---|---|---|
+| POST | `/api/iot/ingest` | Gateway (API Key) | `{ "deviceId": "...", "metrics": { "temperature": 28.5 } }` | `201 Created` <br> `400 Bad Request` |
+| GET | `/api/assets/{id}/iot-data` | FacilityManager | *None* | `200 OK: [ { "metric": "temperature", "value": 28.5, "time": "..." } ]` |
+
+## 6. AI Predictive Maintenance
+| Method | Endpoint | Auth Level | Request Payload | Response |
+|---|---|---|---|---|
+| GET | `/api/assets/{id}/prediction` | FacilityManager, Technician | *None* | `200 OK: { "risk": "High", "predictedAt": "..." }` <br> `404 Not Found` |
+
 
 
