@@ -1,6 +1,6 @@
 # Story Spec
 
-Story ID: US-03-01
+**Story ID: US-03-01
 Requirement IDs: REQ-04, BR-05
 Design link: TODO
 Goal: Cho phép Requester tạo một Maintenance Request mới để báo cáo sự cố liên quan đến Asset hoặc khu vực.
