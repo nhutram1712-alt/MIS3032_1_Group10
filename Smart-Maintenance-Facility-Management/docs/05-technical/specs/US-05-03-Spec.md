@@ -1,5 +1,5 @@
 
-# Story Spec
+# Story Spec - US-05-03 — Giám sát IoT Data
 
 **Story ID:** US-05-03
 
