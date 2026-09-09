@@ -62,3 +62,7 @@ graph TD
     
     Sensors -->|MQTT/HTTP| Gateway
     Gateway -->|IoT Data| API
+    
+    Logic -->|Request Prediction| AI_Engine
+    DB -->|IoT Data + History| AI_Engine
+    AI_Engine -->|Risk: Low/Med/High| Logic
