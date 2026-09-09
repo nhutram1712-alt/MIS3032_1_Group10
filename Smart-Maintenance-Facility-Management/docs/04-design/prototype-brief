@@ -1,1 +1,113 @@
+FLOW 1 — Requester: Tạo và theo dõi Maintenance Request
+UC: UC-05 (Tạo Maintenance Request), UC-06 (Theo dõi Maintenance Request)
+ US: US-03-01, US-03-02 
+REQ: REQ-04, REQ-05, REQ-02, REQ-03
+ BR: BR-05 (Request phải xác định Asset hoặc khu vực), BR-14 (6 trạng thái lifecycle) 
+AC tham chiếu: AC-US-03-01-01→04, AC-US-03-02-01→02
+Persona
+Requester (sinh viên/giảng viên/nhân viên) — Persona 01. "Báo lỗi nhanh – dễ theo dõi – biết được sự cố đang được xử lý đến đâu."
+Mục tiêu
+Requester phát hiện điều hòa phòng học hỏng, báo lỗi trong dưới 1 phút, và biết chắc chắn yêu cầu đã được ghi nhận + theo dõi được tiến độ.
+Screens bắt buộc
+UC-03 — Danh sách Asset theo phòng/khu vực (REQ-02, REQ-03, BR-04)
+UC-05 — Form tạo Maintenance Request (mô tả vấn đề + Asset/khu vực + ảnh không bắt buộc)
+UC-05 — Xác nhận đã gửi (trạng thái khởi tạo = Submitted)
+UC-06 — Danh sách Request của tôi (hiển thị đủ 6 trạng thái)
+UC-06 — Chi tiết 1 Request
+States bắt buộc
+loading, empty (chưa có Asset được gán / chưa có Request nào — UC-06 A1)
+error — theo AC-US-03-01-03: không xác định Asset hoặc khu vực → hệ thống KHÔNG cho gửi Request
+confirmation, success
+Business Rule quan trọng cần thể hiện đúng
+BR-05: Request phải xác định Asset hoặc khu vực bị ảnh hưởng — nếu chỉ chọn khu vực (chưa chọn Asset cụ thể), vẫn được phép tạo Request (AC-US-03-01-02), nhưng phải xác định Asset trước khi tạo Work Order (ràng buộc này thuộc Flow 2, UC-08 A2).
+BR-14 / AC-US-03-02-02: Đúng 6 trạng thái chính thức: Submitted → Pending → In Progress → Resolved → Closed, hoặc nhánh Submitted → Rejected.
+Sample Data
+Asset: AC-A203-01 — Điều hòa, Phòng A203, Air Conditioner
+Request mẫu 1: REQ-1042 "Điều hòa không lạnh, có tiếng ồn lớn" — status: Pending
+Request mẫu 2: REQ-1040 "Wi-Fi rớt liên tục khi đông người" — status: Resolved
+Request mẫu 3: REQ-1039 "Hình ảnh máy chiếu mờ, chập chờn" — status: In Progress
+Request mẫu 4: REQ-1021 "Rò rỉ nước ở dàn lạnh" — status: Closed
+[ASSUMPTION] cần kiểm chứng qua test
+Ảnh/video: hiển thị "Thêm ảnh (không bắt buộc)" — REQ-04 xác nhận không bắt buộc, nhưng liên quan Q-02 (đã Open) cần xem người dùng có kỳ vọng bắt buộc không.
+Requester chỉ thấy Asset thuộc phòng/khu vực được gán (Q-01 vẫn Open — chưa xác nhận là "theo phòng phụ trách" hay "toàn bộ").
+FLOW 2 — Facility Manager: Tiếp nhận Request → Tạo & phân công Work Order
+UC: UC-07 (Tiếp nhận và xử lý Maintenance Request), UC-08 (Tạo và phân công Work Order) 
+US: US-03-03, US-03-04, US-04-01, US-04-02 
+REQ: REQ-13, REQ-14, REQ-15 
+BR: BR-05, BR-06 (1 Request = tối đa 1 WO), BR-07, BR-08, BR-18 (Request chỉ Closed sau khi FM xác nhận) 
+AC tham chiếu: AC-US-03-03-01→03, AC-US-03-04-01→03, AC-US-04-01-01→03, AC-US-04-02-01→02
+Persona
+Facility Manager — Persona 03. "Có đầy đủ dữ liệu để biết tài sản nào đang có vấn đề... và cần hành động gì tiếp theo."
+Mục tiêu
+FM nhận một Request mới, xem xét, tạo Work Order, phân công đúng Technician — và sau khi Work Order hoàn thành, xác nhận kết quả để đóng Request đúng theo BR-18.
+Screens bắt buộc
+UC-07 — Danh sách Maintenance Request chờ xử lý
+UC-07 — Chi tiết Request + nút "Tạo Work Order"
+UC-08 — Form tạo Work Order (chọn Technician)
+UC-08 — Xác nhận đã tạo & phân công (trạng thái WO = Assigned)
+UC-10 — Danh sách Work Order + trạng thái (Assigned/In Progress/Completed/Cancelled theo BR-17)
+UC-07 (bước 9-11) / US-03-04 — Màn hình xác nhận kết quả & đóng Request (chỉ xuất hiện khi WO liên quan đã Completed → Request tự chuyển Resolved → FM xác nhận → Closed)
+States bắt buộc
+empty (không còn request chờ xử lý)
+error — theo BR-06/AC-US-04-01-02: Request đã có Work Order rồi → từ chối tạo thêm
+error — theo AC-US-04-01-03: chưa xác định Asset (chỉ có khu vực) → không cho tạo Work Order cho đến khi Asset được xác định
+error — thiếu Technician khi phân công (AC-US-04-02-02: Technician không hợp lệ)
+confirmation, success
+[ASSUMPTION] cần kiểm chứng qua test
+Prototype gộp "Tạo Work Order" và "Phân công Technician" thành 1 form duy nhất để thao tác nhanh — thực tế UC-08 mô tả 2 bước tách biệt (bước 5 tạo WO, bước 6-7 mới chọn & phân công Technician). Cần test xem FM có cảm thấy thiếu bước "xem lại trước khi phân công" không.
+Không có bước "approve" riêng trước khi tạo Work Order (liên quan Q-05 — vẫn Open) — hành động "Tạo Work Order" gộp luôn vai trò duyệt.
+
+FLOW 3 — Technician: Thực hiện Work Order
+UC: UC-09 (Thực hiện Work Order), UC-10 (Theo dõi và hoàn tất Work Order — phần Technician) 
+US: US-04-04, US-04-05, US-04-06 
+REQ: REQ-17, REQ-18, REQ-19, REQ-20, REQ-21, REQ-22 
+BR: BR-07 (chỉ cập nhật WO của mình), BR-08, BR-09, BR-10, BR-11, BR-17
+ AC tham chiếu: AC-US-04-04-01→03, AC-US-04-05-01→04, AC-US-04-06-01→04
+Persona
+Technician — Persona 02. "Nhận đúng Work Order – có đủ thông tin thiết bị – xử lý hiệu quả – ghi nhận đầy đủ kết quả."
+Mục tiêu
+Technician mở Work Order được giao, xem đủ thông tin Asset + IoT Alert/AI Prediction liên quan (UC-09 bước 3-4), quyết định chấp nhận hoặc từ chối, cập nhật tiến độ và hoàn thành kèm ghi nhận kết quả.
+Screens bắt buộc
+UC-09 — Danh sách Work Order được phân công
+UC-09 — Chi tiết Work Order (Asset info + IoT Alert + AI Prediction nếu có — theo UC-15 bước 5: Technician chỉ xem thông tin liên quan Asset trong WO được giao)
+UC-09 (A1) — Từ chối kèm lý do bắt buộc
+UC-09 — Form ghi nhận kết quả xử lý
+UC-09/UC-10 — Xác nhận hoàn thành (WO chuyển Completed, lưu vào Maintenance History)
+States bắt buộc
+empty, loading
+2 biến thể ở màn hình chi tiết: có IoT Alert/AI Prediction và không có (UC-15 A1: "Không có Prediction → hệ thống thông báo chưa có AI Prediction")
+error — theo AC-US-04-05-03: từ chối mà không nhập lý do → không cho hoàn tất thao tác
+error — theo AC-US-04-06-03: chưa ghi nhận kết quả → không cho hoàn thành Work Order
+permission — theo AC-US-04-04-03: Technician không được xem/cập nhật WO không phải của mình
+confirmation, success
+[ASSUMPTION] khác cần kiểm chứng
+Sau khi Technician "Hoàn thành" (Completed), Request liên quan tự chuyển Resolved — Technician chưa thấy được đây có phải bước cuối hay còn chờ FM xác nhận (Q-08 vẫn Open) — cần quan sát Technician có hiểu rõ điều này không.
+FLOW 4 — Facility Manager: Giám sát IoT & AI Prediction / Maintenance Risk
+UC: UC-12 (Giám sát IoT Data), UC-13 (Xử lý IoT Alert), UC-14 (Dự đoán bằng AI), UC-15 (Xem Maintenance Risk và AI Prediction)
+ US: US-05-03, US-05-04, US-06-01, US-06-02
+ REQ: REQ-09, REQ-10, REQ-11, REQ-12, REQ-28, REQ-29, REQ-30
+ BR: BR-10 (AI chỉ hỗ trợ quyết định), BR-11 (AI dùng IoT Data + Maintenance History), BR-12 (Alert theo threshold), BR-13 (Asset phải mapping IoT trước), BR-15 (FM ưu tiên Asset Risk = High)
+ AC tham chiếu: AC-US-05-03-01→04, AC-US-05-04-01→03, AC-US-06-01-01→04, AC-US-06-02-01→03
+Persona
+Facility Manager — đây là flow thể hiện rõ nhất giá trị AI/IoT của sản phẩm, và có nhiều Open Question nhất (5 câu).
+Mục tiêu
+FM mở dashboard, nhanh chóng nhận diện Asset nào có Maintenance Risk = High, hiểu lý do dựa trên dữ liệu gì, và có hành động tiếp theo rõ ràng (tạo Work Order chủ động — nối sang Flow 2).
+Screens bắt buộc
+UC-15 — Dashboard tổng quan: danh sách Asset kèm Maintenance Risk (Low/Medium/High)
+UC-12 — Chi tiết IoT Data của 1 Asset
+UC-14/UC-15 — Chi tiết AI Prediction (risk level + khuyến nghị)
+UC-08 — Hành động: Tạo Work Order chủ động từ Prediction (nối sang Flow 2)
+States bắt buộc
+loading, empty (chưa có Asset nào có Alert/Risk)
+error — theo UC-12 A2: không nhận được dữ liệu IoT mới → hiển thị "không có dữ liệu mới", KHÔNG hiển thị dữ liệu cũ như dữ liệu hiện tại
+empty — theo UC-14 A1: không đủ dữ liệu → hệ thống không tạo Prediction đáng tin cậy, thông báo rõ tình trạng thiếu dữ liệu (không được tự bịa kết quả)
+confirmation (dẫn sang Flow 2)
+Business Rule quan trọng cần thể hiện đúng
+BR-10 / AC-US-06-01-04: "AI chỉ cung cấp Prediction và không tự động quyết định hoặc thực hiện bảo trì" — prototype phải luôn có bước FM tự bấm "Tạo Work Order chủ động", AI không tự tạo.
+UC-15 bước 5: Nếu actor là Technician (không phải FM) xem màn hình này, hệ thống chỉ hiển thị Asset liên quan đến Work Order được giao cho Technician đó — không hiển thị toàn bộ danh sách như FM.
+[ASSUMPTION] cần kiểm chứng — đây là flow có nhiều Open Question nhất
+Risk hiển thị dạng nhãn màu Low/Medium/High (REQ-12), KHÔNG hiển thị % cụ thể — Q-13 vẫn Open, cần test xem FM có muốn thấy con số % không.
+Prediction horizon cố định "7 ngày" (REQ-11 xác nhận High Confidence) dù Q-12 vẫn hỏi liệu có thể là 30/90 ngày.
+Ngưỡng bất thường cụ thể để tạo IoT Alert (Q-09, Q-10 vẫn Open) — prototype dùng số liệu giả định minh họa, không phải threshold thật.
+
 
