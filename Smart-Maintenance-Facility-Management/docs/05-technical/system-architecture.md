@@ -46,7 +46,20 @@ graph TD
     
     Sensors -->|MQTT/HTTP| Gateway
     Gateway -->|IoT Data| API
-    
+
+
+## 3. Cơ chế Auth và Logging
+- **Authentication & RBAC**: Sử dụng JWT (JSON Web Token). Phân quyền chặt chẽ 4 Role: Requester, Technician, Facility Manager, Admin. Không sử dụng SSO ngoài để hệ thống gọn nhẹ, phù hợp với MVP.
+- **Logging**: Ghi log lỗi hệ thống và API traffic bằng thư viện Serilog. Các thay đổi trạng thái quan trọng (tạo Work Order, đổi Status Asset) bắt buộc ghi Audit Log vào cơ sở dữ liệu để phục vụ truy vết.
+
+## 4. Architecture Decision Record (ADR)
+### ADR-001: Lựa chọn Tech Stack Backend và Database
+- **Decision**: Sử dụng C# ASP.NET Core MVC cho Backend và SQL Server cho Database.
+- **Trade-off & Rationale (Lý do)**: 
+  - Đứng trước bài toán thu thập dữ liệu IoT, một lựa chọn phổ biến là dùng cơ sở dữ liệu NoSQL (như MongoDB) để ghi log linh hoạt. Đánh đổi (Trade-off) ở đây là chúng ta từ chối sự linh hoạt của NoSQL để chọn tính toàn vẹn, chặt chẽ (ACID) của cơ sở dữ liệu quan hệ SQL Server.
+  - Sự đánh đổi này là hoàn toàn xứng đáng vì Core Business của hệ thống là quản lý Asset và Maintenance History với các ràng buộc thực thể rất phức tạp. Đồng thời, cấu trúc bảng mạch lạc của SQL Server hỗ trợ cực tốt cho việc trích xuất dữ liệu mỏ (Data Mining) và thiết kế Data Warehousing sau này.
+  - Lựa chọn này giúp tận dụng tối đa lợi thế chuyên môn hiện có về phát triển backend C# và tối ưu query, đảm bảo tốc độ triển khai (velocity) mà không rơi vào tình trạng over-engineer so với scope của một MVP.
+- **Status**: Approved.
     Logic -->|Request Prediction| AI_Engine
     DB -->|IoT Data + History| AI_Engine
     AI_Engine -->|Risk: Low/Med/High| Logic
