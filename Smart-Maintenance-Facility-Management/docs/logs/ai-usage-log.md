@@ -1,3 +1,0 @@
-# AI Usage Log
-
-> TODO
