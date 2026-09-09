@@ -48,6 +48,9 @@ graph TD
     Gateway -->|IoT Data| API
 
 
+
+
+
 ## 3. Cơ chế Auth và Logging
 - **Authentication & RBAC**: Sử dụng JWT (JSON Web Token). Phân quyền chặt chẽ 4 Role: Requester, Technician, Facility Manager, Admin. Không sử dụng SSO ngoài để hệ thống gọn nhẹ, phù hợp với MVP.
 - **Logging**: Ghi log lỗi hệ thống và API traffic bằng thư viện Serilog. Các thay đổi trạng thái quan trọng (tạo Work Order, đổi Status Asset) bắt buộc ghi Audit Log vào cơ sở dữ liệu để phục vụ truy vết.
