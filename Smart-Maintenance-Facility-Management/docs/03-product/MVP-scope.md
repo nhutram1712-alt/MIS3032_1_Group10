@@ -117,17 +117,17 @@ Các nội dung không thuộc phạm vi MVP.
 
 ```mermaid
 graph TD
-    AM[Asset Management] --> IoT[IoT Monitoring]
-    IoT --> Alert[IoT Alert]
+    AM[Quản lý Asset] --> IoT[Giám sát IoT]
+    IoT --> Alert[Cảnh báo IoT]
     
-    Req[Requester] -->|Maintenance Request| FM[Facility Manager]
+    Req[Requester] -->|Yêu cầu bảo trì| FM[Facility Manager]
     Alert --> FM
     
-    FM --> WO[Work Order]
+    FM --> WO[Phân công Work Order]
     WO --> Tech[Technician]
-    Tech --> MH[Maintenance History]
+    Tech --> MH[Lịch sử bảo trì]
     
-    MH --> AI[AI Prediction]
+    MH --> AI[Dự đoán AI]
     IoT --> AI
-    AI --> Risk[Maintenance Risk]
+    AI --> Risk[Mức độ rủi ro bảo trì]
     Risk --> FM
