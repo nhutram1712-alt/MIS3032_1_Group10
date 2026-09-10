@@ -147,12 +147,12 @@ Làm thế nào để xây dựng một hệ thống tập trung giúp quản l�
 
 ```mermaid
 graph TD
-    A[Requester: Create Maintenance Request] --> B[Facility Manager: Review / Process Request]
-    B --> C[Create Work Order & Assign Technician]
-    C --> D{Technician: Accept or Reject?}
-    D -->|Accept| E[In Progress Maintenance]
-    D -->|Reject| B
-    E --> F[Record Maintenance Result & Complete]
-    F --> G[Facility Manager: Confirm Result]
+    A[Requester: Tạo Maintenance Request] --> B[Facility Manager: Xem xét / Xử lý Request]
+    B --> C[Tạo Work Order & Phân công Technician]
+    C --> D{Technician: Chấp nhận hay Từ chối?}
+    D -->|Chấp nhận| E[Đang tiến hành bảo trì]
+    D -->|Từ chối| B
+    E --> F[Ghi nhận kết quả bảo trì & Hoàn thành]
+    F --> G[Facility Manager: Xác nhận kết quả]
     G --> H[Maintenance Request = Closed]
-    H --> I[Save to Maintenance History]
+    H --> I[Lưu vào Maintenance History]
