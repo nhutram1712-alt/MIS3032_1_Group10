@@ -10,15 +10,15 @@ Open Question không phải là Requirement. Khi một câu hỏi được giả
 
 | ID | Open Question | Related Requirement | Priority | Status |
 | --- | --- | --- | --- | --- |
-| **Q-01** | Requester được xem Asset của phòng/khu vực mình phụ trách hay được xem toàn bộ Asset trong hệ thống? | REQ-02 | High | Open |
-| **Q-02** | Maintenance Request có bắt buộc đính kèm hình ảnh/video không? | REQ-04 | Medium | Open |
-| **Q-03** | Maintenance Request cần những trạng thái chính thức nào? | REQ-05, BR-14 | High | Open |
-| **Q-04** | Work Order cần những trạng thái chính thức nào? | REQ-16, REQ-20 | High | Open |
-| **Q-05** | Facility Manager có cần approve Maintenance Request trước khi tạo Work Order không? | REQ-13, REQ-14 | High | Open |
-| **Q-06** | Một Maintenance Request có thể tạo nhiều Work Order hay chỉ một Work Order? | REQ-14 | Medium | Open |
-| **Q-07** | Technician có được từ chối Work Order hoặc yêu cầu Facility Manager phân công lại không? | REQ-17, REQ-20 | Medium | Open |
-| **Q-08** | Sau khi Technician hoàn thành Work Order, Facility Manager có cần xác nhận trước khi đóng Request không? | REQ-22, REQ-23 | High | Open |
-| **Q-09** | IoT Alert được tạo dựa trên threshold cố định, AI anomaly detection hay kết hợp cả hai? | REQ-10, BR-12 | High | Open |
+| **Q-01** | Requester được xem Asset của phòng/khu vực mình phụ trách hay được xem toàn bộ Asset trong hệ thống? | REQ-02 | High | Resolved |
+| **Q-02** | Maintenance Request có bắt buộc đính kèm hình ảnh/video không? | REQ-04 | Medium | Resolved |
+| **Q-03** | Maintenance Request cần những trạng thái chính thức nào? | REQ-05, BR-14 | High | Resolved |
+| **Q-04** | Work Order cần những trạng thái chính thức nào? | REQ-16, REQ-20 | High | Resolved |
+| **Q-05** | Facility Manager có cần approve Maintenance Request trước khi tạo Work Order không? | REQ-13, REQ-14 | High | Resolved |
+| **Q-06** | Một Maintenance Request có thể tạo nhiều Work Order hay chỉ một Work Order? | REQ-14 | Medium | Resolved |
+| **Q-07** | Technician có được từ chối Work Order hoặc yêu cầu Facility Manager phân công lại không? | REQ-17, REQ-20 | Medium | Resolved |
+| **Q-08** | Sau khi Technician hoàn thành Work Order, Facility Manager có cần xác nhận trước khi đóng Request không? | REQ-22, REQ-23 | High | Resolved |
+| **Q-09** | IoT Alert được tạo dựa trên threshold cố định, AI anomaly detection hay kết hợp cả hai? | REQ-10, BR-12 | High | Resolved |
 | **Q-10** | Threshold bất thường cụ thể của từng Asset Type là bao nhiêu? | REQ-10 | High | Open |
 | **Q-11** | AI Prediction sẽ dự đoán khả năng hỏng hóc, nhu cầu bảo trì hay cả hai? | REQ-11 | High | Open |
 | **Q-12** | AI Prediction sử dụng prediction horizon bao nhiêu ngày, ví dụ 7/30/90 ngày? | REQ-11 | Medium | Open |
@@ -28,8 +28,8 @@ Open Question không phải là Requirement. Khi một câu hỏi được giả
 | **Q-16** | Một Asset có thể được mapping với nhiều IoT Device/Sensor không? | REQ-26, REQ-27, BR-13 | Medium | Open |
 | **Q-17** | Ai có quyền thay đổi thủ công Asset Status? | REQ-07, REQ-08 | Medium | Open |
 | **Q-18** | Asset có cần quản lý thêm Manufacturer, Model, Installation Date, Warranty hoặc Purchase Date không? | REQ-06, REQ-07 | Medium | Open |
-| **Q-19** | Facility Manager có nhận Notification khi xuất hiện IoT Alert nghiêm trọng hoặc AI Prediction có Maintenance Risk cao không? | REQ-10, REQ-11, REQ-12 | Medium | Open |
-| **Q-20** | Hệ thống sử dụng tài khoản riêng hay tích hợp với hệ thống Identity/SSO hiện có của Trường Đại học Kinh tế – Đại học Đà Nẵng? | REQ-01, NFR-01 | High | Open |
+| **Q-19** | Facility Manager có nhận Notification khi xuất hiện IoT Alert nghiêm trọng hoặc AI Prediction có Maintenance Risk cao không? | REQ-10, REQ-11, REQ-12 | Medium | Resolved |
+| **Q-20** | Hệ thống sử dụng tài khoản riêng hay tích hợp với hệ thống Identity/SSO hiện có của Trường Đại học Kinh tế – Đại học Đà Nẵng? | REQ-01, NFR-01 | High | Resolved |
 
 ---
 
