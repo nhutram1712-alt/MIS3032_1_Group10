@@ -154,5 +154,5 @@ graph TD
     D -->|Từ chối| B
     E --> F[Ghi nhận kết quả bảo trì & Hoàn thành]
     F --> G[Facility Manager: Xác nhận kết quả]
-    G --> H[Maintenance Request = Closed]
-    H --> I[Lưu vào Maintenance History]
+    G --> H[Trạng thái Maintenance Request = Đã đóng]
+    H --> I[Lưu vào Lịch sử bảo trì]
