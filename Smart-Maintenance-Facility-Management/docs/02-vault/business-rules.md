@@ -65,8 +65,8 @@ Mỗi Business Rule có một ID duy nhất.
 | BR-11 | AI Prediction sử dụng IoT Data và Maintenance History phù hợp. Có thể sử dụng dữ liệu mẫu/giả lập trong MVP. | SRC-USER + SRC-BA | High |
 | BR-12 | IoT Alert được tạo khi IoT Data đáp ứng điều kiện bất thường/threshold đã cấu hình theo Asset Type. | SRC-USER + SRC-BA | High |
 | BR-13 | IoT Device/Sensor phải được mapping với Asset trước khi sử dụng dữ liệu để monitoring. Một Asset chỉ có một IoT Device/Sensor trong MVP. | SRC-USER + SRC-BA | High |
-| BR-14 | Maintenance Request sử dụng Submitted, Pending, In Progress, Resolved, Closed và Rejected. | SRC-USER | High |
-| BR-15 | Facility Manager có thể ưu tiên Asset có Maintenance Risk = High. | SRC-BA | Medium |
+| BR-14 | Maintenance Request sử dụng Hoạt động, Cảnh báo, Bảo trì, Ngừng dùng. | SRC-USER | High |
+| BR-15 | Facility Manager có thể ưu tiên Asset có Maintenance Risk = Cao. | SRC-BA | Medium |
 | BR-16 | Chỉ Facility Manager được thay đổi thủ công Asset Status. | SRC-USER | High |
 | BR-17 | Work Order sử dụng Assigned, In Progress, Completed và Cancelled. | SRC-USER + SRC-BA | High |
 | BR-18 | Maintenance Request chỉ được Closed sau khi Technician hoàn thành WO và Facility Manager xác nhận kết quả. | SRC-USER | High |
