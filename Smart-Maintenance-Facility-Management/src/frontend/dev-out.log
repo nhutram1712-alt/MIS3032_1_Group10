@@ -1,0 +1,69 @@
+
+> smart-maintenance-web@0.1.0 dev
+> vite --host 127.0.0.1 --port 5173
+
+
+  VITE v6.4.3  ready in 1001 ms
+
+  ➜  Local:   http://127.0.0.1:5173/
+15:09:18 [vite] (client) hmr update /src/pages/RequestsPage.tsx
+15:10:23 [vite] (client) hmr update /src/index.css
+15:10:23 [vite] (client) hmr update /src/index.css
+15:11:11 [vite] (client) hmr update /src/pages/WorkOrdersPage.tsx
+15:29:29 [vite] (client) hmr update /src/pages/AppLayout.tsx
+15:29:29 [vite] (client) hmr update /src/App.tsx
+15:29:37 [vite] (client) hmr update /src/App.tsx
+15:29:37 [vite] (client) hmr update /src/pages/OverviewPage.tsx
+15:29:37 [vite] (client) page reload src/App.tsx
+15:29:37 [vite] (client) page reload src/pages/OverviewPage.tsx
+15:30:40 [vite] (client) hmr update /src/pages/WorkOrdersPage.tsx
+15:30:40 [vite] (client) hmr update /src/pages/WorkOrdersPage.tsx
+15:30:47 [vite] (client) hmr update /src/index.css
+15:30:48 [vite] (client) hmr update /src/index.css
+15:31:16 [vite] (client) hmr update /src/index.css
+15:31:17 [vite] (client) hmr update /src/index.css
+15:32:18 [vite] (client) hmr update /src/pages/RequestsPage.tsx
+15:32:18 [vite] (client) hmr update /src/App.tsx
+15:41:06 [vite] (client) hmr update /src/index.css
+15:41:07 [vite] (client) hmr update /src/pages/WorkOrdersPage.tsx
+15:41:07 [vite] (client) hmr update /src/index.css
+15:41:07 [vite] (client) hmr update /src/pages/WorkOrdersPage.tsx
+15:41:19 [vite] (client) hmr update /src/index.css
+15:49:17 [vite] (client) hmr update /src/pages/WorkOrdersPage.tsx
+15:49:17 [vite] (client) hmr update /src/pages/WorkOrdersPage.tsx
+15:54:24 [vite] (client) hmr update /src/pages/AssetsPage.tsx
+15:54:24 [vite] (client) hmr update /src/index.css
+15:54:24 [vite] (client) hmr update /src/pages/AssetsPage.tsx
+15:54:25 [vite] (client) hmr update /src/index.css
+15:59:31 [vite] (client) hmr update /src/pages/AssetsPage.tsx
+15:59:34 [vite] (client) hmr update /src/pages/AssetsPage.tsx
+15:59:34 [vite] (client) hmr update /src/App.tsx
+16:06:58 [vite] (client) hmr update /src/pages/AdminPage.tsx
+16:06:58 [vite] (client) hmr update /src/pages/AdminPage.tsx
+16:07:25 [vite] (client) hmr update /src/pages/AppLayout.tsx
+16:07:38 [vite] (client) hmr update /src/App.tsx
+16:07:38 [vite] (client) hmr update /src/pages/AppLayout.tsx
+16:07:39 [vite] (client) page reload src/pages/AppLayout.tsx
+16:07:39 [vite] (client) page reload src/App.tsx
+16:07:51 [vite] (client) hmr update /src/index.css
+16:07:51 [vite] (client) hmr update /src/pages/OverviewPage.tsx
+16:19:50 [vite] (client) hmr update /src/pages/AdminUsersPage.tsx
+16:19:54 [vite] (client) hmr update /src/pages/AdminUsersPage.tsx
+16:20:13 [vite] (client) hmr update /src/pages/AdminIotPage.tsx
+16:20:13 [vite] (client) hmr update /src/App.tsx
+16:20:17 [vite] (client) hmr update /src/pages/AdminIotPage.tsx
+16:20:18 [vite] (client) hmr update /src/App.tsx
+16:20:49 [vite] (client) hmr update /src/pages/AdminIotPage.tsx
+16:27:50 [vite] (client) hmr update /src/auth.tsx, /src/pages/PredictionsPage.tsx, /src/pages/OverviewPage.tsx, /src/pages/AlertsPage.tsx, /src/pages/LoginPage.tsx, /src/pages/AssetDetailPage.tsx, /src/pages/WorkOrdersPage.tsx, /src/pages/AssetsPage.tsx, /src/pages/RequestsPage.tsx, /src/pages/AdminIotPage.tsx, /src/pages/AdminUsersPage.tsx
+16:27:50 [vite] (client) hmr invalidate /src/auth.tsx Could not Fast Refresh ("useAuth" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
+16:27:50 [vite] (client) page reload src/auth.tsx
+16:27:55 [vite] (client) hmr update /src/pages/AdminIotPage.tsx
+16:27:57 [vite] (client) hmr update /src/App.tsx
+16:27:57 [vite] (client) hmr update /src/App.tsx
+16:28:01 [vite] (client) hmr update /src/pages/AdminIotPage.tsx
+16:29:38 [vite] (client) hmr update /src/pages/AdminIotPage.tsx
+16:29:38 [vite] (client) hmr update /src/App.tsx
+16:32:15 [vite] (client) hmr update /src/pages/AlertsPage.tsx
+16:32:15 [vite] (client) hmr update /src/pages/PredictionsPage.tsx
+16:32:15 [vite] (client) hmr update /src/App.tsx
+16:32:15 [vite] (client) hmr update /src/App.tsx
