@@ -7,9 +7,9 @@ Mã nguồn hệ thống Smart Maintenance & Facility Management.
 ```
 src/
 ├── backend/     # API, business logic
-├── frontend/    # Giao diện người dùng
-├── iot/         # Thu thập dữ liệu cảm biến, gateway
-└── ai/          # Mô hình dự đoán, xử lý dữ liệu
+├── frontend/    # Vite + React (4 role)
+├── iot/         # chưa triển khai
+└── ai/          # AI Prediction Service (Python FastAPI) — US-06-01
 ```
 
 Yêu cầu kỹ thuật xem tại `../docs/05-technical/system-architecture.md`.
