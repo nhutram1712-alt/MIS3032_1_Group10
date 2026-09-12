@@ -102,4 +102,3 @@ Không có known issue Critical/High mở.
 
 **Release blockers (Critical/High functional):** 0  
 **Release blockers (ops/deploy):** N/A — chưa làm Release  
-**Khuyến nghị:** Không claim “100% pass”; báo cáo đúng **40/50 Pass**.
