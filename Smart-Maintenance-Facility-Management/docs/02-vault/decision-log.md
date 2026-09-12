@@ -101,9 +101,21 @@ Cả `business-rules.md` và `requirements.md` đều đã trỏ tới file này
 - **Lý do:** Tránh tình trạng mỗi người/mỗi lần hỏi AI lại chọn nguồn khác nhau khi có mâu thuẫn (đã xảy ra ở Round 1 benchmark, sửa ở Round 2).
 - **Status:** CONFIRMED
 
+### DEC-09 — Sửa lỗi nội dung sai trong BR-14 và BR-15
+
+- **Ngày:** 2026-09-12
+- **Nguồn:** Phát hiện trong lúc AI/Vault rà soát `business-rules.md` khi cập nhật `source-priority.md` v1.1
+- **Liên quan:** BR-14, BR-15, REQ-05, REQ-12, Interview.md Decision 2, DEC-02
+- **Vấn đề phát hiện:** `BR-14` hiện ghi *"Maintenance Request sử dụng Hoạt động, Cảnh báo, Bảo trì, Ngừng dùng"* — đây là 4 giá trị của **Asset Status** (Operational, Warning, Maintenance, Out of Service theo `glossary.md`), bị nhầm với trạng thái của **Maintenance Request**. `BR-15` cũng đổi "Risk = High" thành "Risk = Cao", không khớp giá trị chuẩn Low/Medium/High dùng trong `requirements.md` REQ-12.
+- **Quyết định:** Khôi phục nội dung đúng theo `requirements.md` (rank 1) và `Interview.md` Decision 2 (rank 3, CONFIRMED):
+  - `BR-14` (sửa lại): *"Maintenance Request sử dụng Submitted, Pending, In Progress, Resolved, Closed và Rejected."*
+  - `BR-15` (sửa lại): *"Facility Manager có thể ưu tiên Asset có Maintenance Risk = High."*
+- **Lý do:** BR-14/BR-15 hiện đang mâu thuẫn trực tiếp với REQ-05/REQ-12 và Interview Decision 2 (đều có rank cao hơn theo `source-priority.md`). Nếu không sửa, Engineering/QA có thể code/test sai lifecycle của Maintenance Request.
+- **Status:** CONFIRMED — cần BA/AI-Vault thực hiện sửa trực tiếp trên `business-rules.md`.
+
 ---
 
-## 4. Bảng tổng hợp
+## 4. Bảng tổng hợp (bảng đã có — chỉ cần thêm dòng cuối)
 
 | Decision | Chủ đề | Status |
 |---|---|---|
@@ -115,6 +127,9 @@ Cả `business-rules.md` và `requirements.md` đều đã trỏ tới file này
 | DEC-06 | Authentication & Access Control | CONFIRMED |
 | DEC-07 | Cập nhật Status Open Questions đã Resolved | CONFIRMED |
 | DEC-08 | Áp dụng Source Priority chính thức | CONFIRMED |
+| DEC-09 | Sửa lỗi nội dung sai trong BR-14 và BR-15 | CONFIRMED |
+
+
 
 ## 5. Related Documents
 
