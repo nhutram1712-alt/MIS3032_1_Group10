@@ -55,37 +55,35 @@ E2E UI automated (Playwright) → **Final** (BUG-006).
 
 ## 4. E2E Scenario mẫu (Output #27)
 
-**Scenario A — FM xử lý từ hàng chờ phân công (code mới):**
+**Scenario A — FM xử lý từ hàng chờ phân công Work order:**
 
 ```
-Given Facility Manager đã đăng nhập (manager / Due@2026)
-  And tồn tại Request Status = Submitted chưa có WO (seed queue)
+Given Facility Manager đã đăng nhập
+  And tồn tại Request Status = Chờ phân công chưa có WO
 When FM chọn kỹ thuật viên và bấm Phân công trên hàng chờ
-Then hệ thống tạo Work Order Status = Assigned
-  And Request chuyển Pending (sync)
-  And không tạo được WO thứ hai cho cùng Request (409)
+Then hệ thống tạo Work Order Status = Đã phân công
+  And Request chuyển Đang xử lý (đồng bộ)
+  And không tạo được WO thứ hai cho cùng Request
 When Technician tech1 đăng nhập và chọn Bắt đầu
-Then WO Status = In Progress (Request In Progress)
-When Technician nhập result và Hoàn thành
-Then WO Completed + History
-  And AI Prediction (nếu có) không tự tạo thêm WO (BR-10)
+Then WO Status = Đang xử lý
+  And Request vẫn Đang xử lý
+When Technician nhập kết quả và bấm Hoàn thành
+Then WO Status = Hoàn thành
+  And có lịch sử bảo trì
+  And AI Prediction (nếu có) không tự tạo thêm WO
 ```
 
-**Scenario B — Admin IoT mapping (code mới):**
+**Scenario B — Admin IoT mapping:**
 
 ```
 Given Admin đã đăng nhập
-  And còn tài sản chưa map (seed F201/G101…)
+  And còn tài sản chưa map
 When Admin chọn tài sản chưa map và Tạo mapping (không nhập Device ID)
 Then hệ thống tạo Device ID dạng SENSOR_{assetId}
   And tài sản biến mất khỏi dropdown “chưa map”
 When Admin thử map lại cùng asset
-Then 400 (BR-13)
+Then BR-13
 ```
-
-**Scenario C — Admin luân chuyển nhân sự (không leo thang):** *(giữ nguyên QT-1..4)*
-
----
 
 ## 5. Completion gate
 
