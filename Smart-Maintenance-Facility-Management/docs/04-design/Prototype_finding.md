@@ -293,26 +293,15 @@ flowchart TD
 > Mỗi người chỉ được giao 1-2 flow phù hợp vai trò đóng, theo đúng persona.
 
 ### Top vấn đề cần xử lý ngay (ưu tiên theo mức độ nghiêm trọng)
-1. **[Nghiêm trọng nhất] OQ-01:** Technician hiểu nhầm ý nghĩa trạng thái "Đã hủy" sau khi từ chối Work Order.
-2. **[Nghiêm trọng] Flow 2:** Thiếu hẳn UI cho bước "Xác nhận kết quả & Đóng yêu cầu" (US-03-04, BR-18). Task 2b thất bại hoàn toàn.
-3. **Q-22:** 2 nút "Từ chối"/"Phân công" cạnh nhau gây mơ hồ về phạm vi hành động.
-4. **Flow 1:** Thiết kế "im lặng cập nhật" sau khi gửi yêu cầu chưa đủ rõ ràng.
-5. **Q-24:** Thiếu liên kết giữa IoT Alerts/AI Risks và hành động tạo Work Order (mức độ nhẹ).
 
----
+1. **Flow 1:** Dropdown "Vị trí" khi bấm vào nay hiển thị đầy đủ danh sách vị trí có trong hệ thống để chọn trực tiếp
+2.**Flow 4:** bấm vào tên thiết bị ở bảng IoT Alerts / AI Risks sẽ chuyển sang trang "Tài sản → Chi tiết" của đúng thiết bị đó, thay vì chỉ là text tĩnh không thao tác được như bản cũ
 
-### Kết quả quan trọng nhất: OQ-01 — Work Order Rejection Status
-* **Task 3b:** Trầm từ chối 1 Work Order khác, thấy dòng đó chuyển sang "Đã hủy".
-* Khi được hỏi *" 'Đã hủy' ở đây nghĩa là gì?"*, Trầm trả lời: *"Chắc là xong luôn rồi, không ai làm cái này nữa hả? Nhưng ủa lỡ tôi từ chối mà đâu có nghĩa là cái việc đó không cần làm nữa đâu, người khác vẫn phải làm chứ."*
-* **Nhận xét:** Trầm nhận ra ngay sự mâu thuẫn logic: "Đã hủy" thường hiểu là "không cần làm nữa", nhưng thực tế ý định là "tôi từ chối, cần người khác làm" — hai ý nghĩa trái ngược nhau nhưng đang dùng chung 1 nhãn.
+
 
 #### Đề xuất hướng resolve OQ-01:
 * [ ] **Phương án 1:** Reject chỉ là action, WO giữ nguyên Assigned.
-* [x] **Phương án 2 (đề xuất):** Tách `Rejected` thành Work Order Status riêng biệt, khác với `Cancelled`.
-  * *Lý do:* Rủi ro thực tế là Work Order bị bỏ sót nếu Facility Manager không chủ động kiểm tra lại — không chỉ là vấn đề trải nghiệm mà có thể ảnh hưởng đến vận hành thật.
-  * *Lưu ý:* Đây là đề xuất dựa trên dữ liệu mô phỏng cỡ mẫu rất nhỏ (n=1) — cần stakeholder/giảng viên xác nhận chính thức trước khi cập nhật BR-17.
 
----
 
 ### Open Questions khác được resolve nhờ test này
 
@@ -366,11 +355,3 @@ flowchart TD
 * **Ảnh hưởng:** Q-05.
 * **Trạng thái:** **Proposed**.
 
-### DEC-12 — Nút "Từ chối" ở khối phân công cần làm rõ phạm vi hành động
-* **Ngày:** 10/09/2026
-* **Người tham gia:** Project Owner (mô phỏng), dựa trên usability test mô phỏng với Hồ Thị Thu Thảo
-* **UC liên quan:** UC-07, UC-08 | **Open Question mới:** Q-22
-* **Vấn đề:** Hệ thống có nút "Từ chối" đặt cạnh nút "Phân công" ở khối phân công yêu cầu — hành vi này chưa từng được mô tả trong UC-07/UC-08 gốc. Usability test cho thấy Facility Manager bối rối thật về ý nghĩa: từ chối yêu cầu hay từ chối phân công cho người này.
-* **Quyết định (đề xuất):** Cần bổ sung Use Case/User Story mới mô tả rõ hành vi "Facility Manager từ chối thẳng Maintenance Request" (khác với Technician từ chối Work Order đã phân công — đó là OQ-01, một vấn đề khác). Đề xuất đổi label nút thành cụ thể hơn, ví dụ "Từ chối yêu cầu" thay vì chỉ "Từ chối".
-* **Ảnh hưởng:** Cần thêm UC/US mới cho hành vi này.
-* **Trạng thái:** **Proposed** — cần Business Analyst bổ sung UC/US chính thức.
