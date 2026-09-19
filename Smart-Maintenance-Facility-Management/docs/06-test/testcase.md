@@ -28,7 +28,7 @@
 
 ---
 
-## B. Extended suite (P0/P1) — cập nhật theo code mới
+## B. Extended suite (P0/P1)
 
 ### EPIC-01 Auth & Users
 
