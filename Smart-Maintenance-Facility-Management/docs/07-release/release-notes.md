@@ -4,7 +4,6 @@
 > **Target Version:** v1.0.0-final  
 > **Release Status:** Release Candidate (RC) — Validation Pending  
 > **Last Updated:** 2026-10-10  
-> **Commit Reference:** d9a52ac5936a6dec516604a5342e7ce28dd453e5  
 > **Scope:** MVP — Local development demo only (Not production-ready)
 
 ---
