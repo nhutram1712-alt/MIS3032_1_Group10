@@ -8,7 +8,6 @@
 | **Phiên bản mục tiêu** | v1.0.0-final (Release Candidate) |
 | **Trạng thái** | Validation Pending — Chưa publish, chưa deploy production |
 | **Ngày kiểm tra** | 10/10/2026 |
-| **Commit SHA** | `b6c7eb9b8780d5d8635aed392090d1ded58c9130` |
 | **Branch** | `main` |
 
 **Phạm vi môi trường:**
