@@ -3,8 +3,8 @@
 > **Project:** Smart Maintenance & Facility Management
 > **Organization:** Trường Đại học Kinh tế – Đại học Đà Nẵng
 > **Owner:** AI/Vault
-> **Version:** 1.0
-> **Cập nhật lần cuối:** 2026-09-12
+> **Version:** 1.1
+> **Cập nhật lần cuối:** 2026-10-10
 
 ---
 
@@ -91,7 +91,8 @@ File này là "bản đồ" của toàn bộ repo: liệt kê **mọi file/thư 
 
 | File | Mô tả | Trạng thái |
 |---|---|---|
-| `release-notes.md` | Release notes | Current (do QA/Release phụ trách) |
+| `release.md` | **NEW** Release Plan + Runbook (hướng dẫn chạy lại từ đầu) + Smoke Test + Release Gate cho v1.0.0-final | Current (do QA/Release phụ trách) |
+| `release-notes.md` | Release notes v1.0.0-final (Release Candidate): tính năng theo EPIC, Known Issues, Verification Status | Current (do QA/Release phụ trách) |
 
 ## 9. `docs/logs/` — Nhật ký
 
@@ -108,20 +109,23 @@ File này là "bản đồ" của toàn bộ repo: liệt kê **mọi file/thư 
 |---|---|---|
 | `docs/source-priority.md` | Quy tắc ưu tiên nguồn khi Vault xung đột | Current — v1.1, đã cập nhật bao phủ toàn bộ `04-design/05-technical/06-test/07-release` |
 | `docs/00-project-index.md` | Chính là file này | Current |
-| `README.md` (gốc) | Giới thiệu repo | Current |
+| `README.md` (gốc) | Giới thiệu repo, Quick Start, tài khoản demo, cấu trúc dự án, trạng thái v1.0.0-final | Current — **UPDATED** |
+| `CHANGELOG.md` (gốc) | **NEW** Lịch sử thay đổi theo định dạng Keep a Changelog (mục `[Unreleased]` cho v1.0.0-final) | Current |
 
 ## 11. `src/` và `tests/` — Mã nguồn (không thuộc Vault, chỉ liệt kê để tham chiếu)
 
 | Thư mục | Mô tả |
 |---|---|
-| `src/backend/` | ASP.NET Core API (Controllers, Application, Domain, Infrastructure, Tests) |
+| `src/backend/` | ASP.NET Core API (Controllers, Application, Domain, Infrastructure, Tests — 65 test) |
 | `src/frontend/` | React + TypeScript + Vite |
 | `src/ai/` | AI microservice (Python) cho AI Prediction |
 | `tests/` | Test scaffold cấp repo |
 
 ---
 
-## 12. Việc còn tồn đọng (theo dõi bởi AI/Vault)
+## 12. Việc còn tồn đọng
+
+### 12.1. Vault & tài liệu (theo dõi bởi AI/Vault)
 
 | # | Việc | Ưu tiên |
 |---|---|---|
@@ -131,8 +135,21 @@ File này là "bản đồ" của toàn bộ repo: liệt kê **mọi file/thư 
 | 4 | Bổ sung câu hỏi benchmark mới cho nội dung `04-design/05-technical/06-test/07-release` (Vault đã mở rộng nhiều so với Bài 1) | 🟡 Trung bình |
 | 5 | Khuyến khích BA/PM điền `logs/interview-notes/` và `logs/meeting-notes/` nếu có phỏng vấn/họp thật | 🟢 Thấp |
 
+### 12.2. Sản phẩm & phát hành (từ Release v1.0.0-final)
+
+| # | Việc | Ưu tiên |
+|---|---|---|
+| 6 | Xử lý BUG-009, BUG-010 (IoT Mapping: thiếu UI Unmap/Edit Device ID) | 🟡 Trung bình |
+| 7 | Xử lý BUG-011, BUG-013 (FE deep-link guard cho `/admin`, `/alerts`, `/predictions`) | 🟡 Trung bình |
+| 8 | Thêm E2E Playwright tests (BUG-006) | 🟡 Trung bình |
+| 9 | Dịch label tiếng Việt (BUG-007, BUG-008, BUG-014) | 🟢 Thấp |
+| 10 | Thiết lập Staging environment | 🔴 Cao |
+| 11 | Production hardening (WAF, secrets manager, TLS, monitoring) | 🔴 Cao |
+
 ## 13. Related Documents
 
 - `source-priority.md` — quy tắc ưu tiên nguồn
 - `decision-log.md` — mọi quyết định chính thức
 - `vault-qa-benchmark.md` — kết quả kiểm tra chất lượng Vault
+- `07-release/release.md` — runbook và release gate v1.0.0-final
+- `CHANGELOG.md` — lịch sử thay đổi
