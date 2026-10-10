@@ -1,0 +1,30 @@
+﻿case_id,group,scenario,expected,actual,result,detail,if_fail
+A01,Risk logic,"Nhiệt độ 25°C, chưa có lịch sử sửa chữa",200 Low,200 Low,PASS,,Major
+A02,Risk logic,Biên dưới Medium: 29.9°C,200 Low,200 Low,PASS,,Major
+A03,Risk logic,Biên Medium: đúng 30°C,200 Medium,200 Medium,PASS,,Major
+A04,Risk logic,Biên trên Medium: 34.9°C,200 Medium,200 Medium,PASS,,Major
+A05,Risk logic,Biên High: đúng 35°C,200 High,200 High,PASS,,Critical
+A06,Risk logic,Nhiệt độ 42°C,200 High,200 High,PASS,,Critical
+A07,Risk logic,Nhiệt độ 25°C nhưng đã sửa chữa 3 lần,200 Medium,200 Medium,PASS,,Major
+A08,Risk logic,"Nhiệt độ 25°C, đã sửa chữa 2 lần (chưa tới ngưỡng)",200 Low,200 Low,PASS,,Major
+A09,Risk logic,"Nguồn tắt (power_status = 0), nhiệt độ bình thường",200 High,200 High,PASS,,Critical
+A10,Risk logic,"Nguồn bật (power_status = 1), nhiệt độ bình thường",200 Low,200 Low,PASS,,Major
+A11,Risk logic,"Nhiều lần đo [25, 36, 26] → lấy giá trị cao nhất",200 High,200 High,PASS,,Critical
+A12,Risk logic,31°C và đã sửa chữa 5 lần,200 Medium,200 Medium,PASS,,Major
+A13,Risk logic,"Chỉ có power_status = 1, không có nhiệt độ",200 Low,200 Low,PASS,,Minor
+A14,Risk logic,"Nhiệt độ âm (-5°C), dữ liệu bất thường nhưng hợp lệ về kiểu",200 Low,200 Low,PASS,,Minor
+A15,Risk logic,36°C kèm nguồn bật,200 High,200 High,PASS,,Critical
+B01,Guardrail/Fallback,Không có IoT reading nào → không đủ dữ liệu,422,422,PASS,,Critical
+B02,Guardrail/Fallback,horizonDays = 14 (ngoài phạm vi 7 ngày),400,400,PASS,,Major
+B03,Guardrail/Fallback,horizonDays = 1,400,400,PASS,,Major
+B04,Guardrail/Fallback,API key sai,401,401,PASS,,Critical
+B05,Guardrail/Fallback,Thiếu API key,401,401,PASS,,Critical
+B06,Guardrail/Fallback,Thiếu assetId,422,422,PASS,,Major
+B07,Guardrail/Fallback,Giá trị đo không phải số ('abc'),422,422,PASS,,Major
+B08,Guardrail/Fallback,Body rỗng {},422,422,PASS,,Major
+C01,Output/Contract,"Output hợp lệ: risk ∈ {Low, Medium, High} và horizonDays = 7",200 Medium,200 Medium,PASS,,Critical
+C02,Output/Contract,AI chỉ trả kết quả hỗ trợ: không có trường tạo Work Order / đổi Asset Status,200 High,200 High,PASS,,Critical
+C03,Output/Contract,Response có đủ field theo ai-requirements §5.2,200 Medium,200 Medium,FAIL,"thiếu field: ['basedOnSampleData', 'confidence', 'message', 'predictedAt', 'riskLevel']",Major
+C04,Output/Contract,Header xác thực đúng tên theo ai-requirements §5.1 (X-Service-Key),200 Low,401,FAIL,status 401 ≠ 200,Minor
+C05,Output/Contract,"Chỉ có metric lạ (humidity), không có temperature/power → nên báo không đủ dữ liệu",422,200 Low,FAIL,status 200 ≠ 422,Major
+C06,Output/Contract,"Có metric lạ lẫn temperature 36°C → bỏ qua metric lạ, vẫn High",200 High,200 High,PASS,,Major
