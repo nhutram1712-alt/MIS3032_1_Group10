@@ -188,74 +188,9 @@ Nguồn:
 | AC-US-06-01-01 | Có dữ liệu đủ | Hệ thống tạo AI Prediction | Tạo Prediction cho asset | REQ-11, REQ-29 | Test prediction | PASS |
 | AC-US-06-02-01 | Asset có Prediction hợp lệ | Facility Manager xem Prediction | Hệ thống hiển thị Maintenance Risk | REQ-12 | Test xem risk | PASS |
 
----
 
-## 5. Findings và Business Decisions Required
 
-### Finding A — REQ-02, quyền xem Asset của Requester
-
-**Nội dung:**
-Requester chỉ được xem Asset thuộc phòng/khu vực được phép sử dụng. Quy định này được xác nhận trong DEC-01 và Interview. Tuy nhiên, hiện trạng thực tế cần phân biệt rõ giữa:
-- Hệ thống chặn request ở tầng API; và
-- Giao diện người dùng có thực sự giới hạn đúng phạm vi hay không.
-
-**Kết luận:**
-- Yêu cầu đã xác định rõ.
-- Chưa có bằng chứng đầy đủ trên UI rằng tất cả các điểm truy cập đều giới hạn đúng theo room/zone.
-- Không tự đổi REQ-02 thành quyền xem toàn bộ Asset khi chưa có quyết định phê duyệt.
-
-**Status:** PENDING DECISION
-
-### Finding B — Mâu thuẫn US-01-04
-
-**Nội dung:**
-AC-US-01-04-02 mô tả việc Admin cập nhật quyền của một Role. Nhưng Story Spec và Decision Log gợi ý ma trận quyền là cố định. Không có mô tả rõ ràng về kiểu thay đổi quyền động hay quyền “xem” như một matix cố định.
-
-**Tác động:**
-- Dẫn đến mơ hồ trong cách hiểu quyền Admin.
-- Có thể dẫn đến việc đánh giá nhầm là hệ thống hỗ trợ cấu hình quyền động khi thực tế không có.
-
-**Status:** PENDING DECISION
-
-### Finding C — Ma trận quyền và chức năng thực tế
-
-**Nội dung:**
-Ma trận quyền cần phân biệt rõ hai khía cạnh:
-1. Quyền truy cập chức năng (có thể sử dụng chức năng nào).
-2. Quy tắc sở hữu dữ liệu (có thể truy cập dữ liệu nào).
-
-Ví dụ: Technician có quyền xem Work Order được giao nhưng không được xem WO của Technician khác. Đây là quyền thực thi theo ownership, không chỉ là Role.
-
-**Kết luận:**
-- Quy tắc ownership đã được xác định rõ trong BR-07 và các AC tương ứng.
-- Tuy nhiên, cần kiểm tra tính nhất quán giữa product spec, backend và UI.
-
-### Finding D — Frontend Route Guard
-
-**Nội dung:**
-Một người dùng có thể vào trực tiếp URL của route đặc quyền, nhưng việc tải được trang không đồng nghĩa với việc có thể thực hiện API đặc quyền. Đây là sự khác biệt giữa:
-- Route protection ở frontend.
-- Authorization enforcement ở backend.
-
-**Kết luận:**
-- Backend hiện có kiểm soát thực sự tốt.
-- Frontend route guard chưa nhất quán ở một số màn hình, và đây là gap UX / bảo vệ route cần xử lý.
-- Không suy luận rằng mọi phân quyền backend đều bị vượt qua nếu route UI chưa chặn.
-
-### Finding E — Token sau khi thay đổi Role hoặc vô hiệu hóa tài khoản
-
-**Nội dung:**
-Có bằng chứng rằng hệ thống có cơ chế logout và blacklist token. Tuy nhiên, khi tài khoản bị khóa hoặc thay đổi Role, hành vi chi tiết về session hiện tại chưa được phát biểu rõ.
-
-**Cần quyết định:**
-- Khi role/account status thay đổi, token hiện hữu có bị thu hồi ngay không?
-- Nếu không, sinh viên / người dùng sẽ vẫn giữ quyền cũ cho đến khi hết thời gian token.
-
-**Status:** PENDING DECISION
-
----
-
-## 6. Verification Status
+## 5. Verification Status
 
 | Khu vực | Status | Ghi chú |
 |---|---|---|
@@ -271,7 +206,7 @@ Có bằng chứng rằng hệ thống có cơ chế logout và blacklist token.
 
 ---
 
-## 7. Traceability and Summary
+## 6. Traceability and Summary
 
 | Requirement | Business Rule / Decision | User Story | Acceptance Criteria | Evidence | Status |
 |---|---|---|---|---|---|
@@ -296,7 +231,7 @@ Có bằng chứng rằng hệ thống có cơ chế logout và blacklist token.
 
 ---
 
-## 8. Kết luận BA
+## Kết luận BA
 
 Tài liệu này phản ánh trạng thái thực tế và không đánh dấu tất cả các điều kiện đã đạt chỉ vì có requirement hoặc story. Bản chất của AuthN/AuthZ trong MVP là: core behavior đã có bằng chứng, nhưng vẫn còn những điểm cần quyết định nghiệp vụ để giúp hệ thống trở nên rõ ràng hơn và dễ bảo vệ trong buổi đánh giá BA.
 
