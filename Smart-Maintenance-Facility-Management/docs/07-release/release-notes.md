@@ -3,7 +3,7 @@
 > **Project:** Smart Maintenance & Facility Management  
 > **Target Version:** v1.0.0-final  
 > **Release Status:** Release Candidate (RC) — Validation Pending  
-> **Last Updated:** 2026-10-10  
+> **Last Updated:** 2026-10-17  
 > **Scope:** MVP — Local development demo only (Not production-ready)
 
 ---
@@ -19,9 +19,9 @@
 | **Organization** | Trường Đại học Kinh tế – Đại học Đà Nẵng (DUE) |
 | **Scope** | MVP: 4 Roles, 5 Asset Types, Reactive + Predictive Maintenance |
 | **Environment** | Local development only (SQL Server LocalDB, Vite dev server) |
-| **Commit SHA** | d9a52ac5936a6dec516604a5342e7ce28dd453e5 |
-| **Test Evidence** | 65 backend tests passed (10/10/2026); 30 smoke test scenarios |
-| **Documentation Date** | 2026-10-10 |
+| **Commit SHA** | d9a52ac5936a6dec516604a5342e7ce28dd453e5 *(cần xác minh — không có git repo local)* |
+| **Test Evidence** | 53 test case UI (47 Pass, 6 Failed) — xem `test case_SmartMaintenance.md`; 65 test xUnit trong SmartMaintenance.Tests (chưa đính kèm log chạy) |
+| **Documentation Date** | 2026-10-17 |
 
 ---
 
@@ -60,15 +60,15 @@ Phiên bản này **không** là production-ready. Đây là bản demo để đ
 | Xem Work Order được phân công | Biết công việc cần thực hiện | REQ-17 | AC-US-04-04-01 | ✅ PASS |
 | Xem chi tiết Work Order | Hiểu rõ nội dung phiếu công việc | REQ-18 | AC-US-04-04-02 | ✅ PASS |
 | Xem Asset liên quan | Nhận biết tài sản cần bảo trì | REQ-18 | AC-US-04-04-03 | ✅ PASS |
-| Xem IoT Data & Alert | Kiểm tra tình trạng device | REQ-19, REQ-09 | AC-US-05-03 | ✅ PASS |
-| Xem AI Prediction / Risk | Hiểu mức độ khẩn cấp | REQ-19, REQ-11 | AC-US-06-03 | ✅ PASS (label tiếng Anh) |
+| Xem IoT Data & Alert | Kiểm tra tình trạng device | REQ-19, REQ-09 | AC-US-05-03 | ⚠️ PARTIAL — BUG-008: label metric/mức độ còn tiếng Anh |
+| Xem AI Prediction / Risk | Hiểu mức độ khẩn cấp | REQ-19, REQ-11 | AC-US-06-03 | ⚠️ PARTIAL — BUG-011: mức rủi ro còn High/Medium |
 | Cập nhật Work Order (Assigned → In Progress) | Ghi nhận bắt đầu công việc | REQ-20 | AC-US-04-05-01 | ✅ PASS |
 | Từ chối Work Order kèm lý do | Xử lý trường hợp không thực hiện được | REQ-20 | AC-US-04-05-03 | ✅ PASS |
 | Ghi nhận kết quả bảo trì | Lưu hành động và kết quả | REQ-21 | AC-US-04-06-01 | ✅ PASS |
 | Hoàn thành Work Order | Chuyển trạng thái sang Completed | REQ-22 | AC-US-04-06-02 | ✅ PASS |
 | Đăng xuất | Kết thúc phiên | Implicit | AC-US-01-01-03 | ✅ PASS |
 
-**Tóm tắt:** Toàn bộ luồng thực hiện công việc hoạt động. UX: một số label tiếng Anh cần dịch.
+**Tóm tắt:** Toàn bộ luồng thực hiện công việc hoạt động. UX: một số label tiếng Anh cần dịch (BUG-008, BUG-011).
 
 ---
 
@@ -82,18 +82,17 @@ Phiên bản này **không** là production-ready. Đây là bản demo để đ
 | Cập nhật thông tin Asset | Sửa chữa thông tin sai | REQ-07 | AC-US-02-02-01 | ✅ PASS |
 | Thay đổi Asset Status | Cập nhật trạng thái tài sản | REQ-08 | AC-US-02-03-01 | ✅ PASS |
 | Xem IoT Data của Asset | Kiểm tra thông số real-time | REQ-09 | AC-US-05-03-01 | ✅ PASS |
-| Xem IoT Alert | Nhận thông báo bất thường | REQ-10 | AC-US-05-04-01 | ✅ PASS |
-| Xem AI Prediction | Biết mức độ rủi ro Asset | REQ-11, REQ-12 | AC-US-06-02-01 | ✅ PASS |
+| Xem IoT Alert | Nhận thông báo bất thường | REQ-10 | AC-US-05-04-01 | ⚠️ PARTIAL — BUG-008: raw metric + mức độ còn tiếng Anh |
+| Xem AI Prediction | Biết mức độ rủi ro Asset | REQ-11, REQ-12 | AC-US-06-02-01 | ⚠️ PARTIAL — BUG-011: mức rủi ro còn High/Medium |
 | Ưu tiên Asset có Risk cao | Sắp xếp công việc theo ưu tiên | BR-15 | Implicit | ✅ PASS |
 | Tiếp nhận Maintenance Request | Phê duyệt yêu cầu báo cáo | REQ-13 | AC-US-03-03-01 | ✅ PASS |
 | Tạo Work Order từ Request | Phân công công việc | REQ-14 | AC-US-04-01-01 | ✅ PASS |
 | Phân công Technician | Gán Technician phù hợp | REQ-15 | AC-US-04-02-01 | ✅ PASS |
-| Xem danh sách Work Order | Giám sát tiến độ công việc | REQ-16 | AC-US-04-03-01 | ✅ PASS |
+| Xem danh sách Work Order | Giám sát tiến độ công việc | REQ-16 | AC-US-04-03-01 | ⚠️ PARTIAL — BUG-007: trang Work Order còn lẫn tiếng Anh |
 | Xác nhận kết quả bảo trì | Phê duyệt hoàn thành công việc | REQ-13, BR-18 | AC-US-03-04-01 | ✅ PASS |
-| Mapping Asset ↔ IoT Device | Kết nối thiết bị giám sát | REQ-26, REQ-27 | AC-US-05-01-01 | ✅ PASS |
 | Đăng xuất | Kết thúc phiên | Implicit | AC-US-01-01-03 | ✅ PASS |
 
-**Tóm tắt:** Toàn bộ quy trình quản lý hoạt động hoàn chỉnh. UI còn một số label tiếng Anh.
+**Tóm tắt:** Toàn bộ quy trình quản lý hoạt động hoàn chỉnh. ⚠️ Một số label tiếng Anh (BUG-007, BUG-008, BUG-011). Lưu ý: chức năng IoT Mapping chỉ dành cho Admin, Facility Manager không có menu này.
 
 ---
 
@@ -105,11 +104,12 @@ Phiên bản này **không** là production-ready. Đây là bản demo để đ
 | Xem danh sách User | Quản lý tài khoản | REQ-24 | AC-US-01-03-01 | ✅ PASS |
 | Tạo User mới | Cấp tài khoản cho nhân viên mới | REQ-24 | AC-US-01-03-02 | ✅ PASS |
 | Gán / Đổi Role User | Thay đổi quyền của người dùng | REQ-25 | AC-US-01-04-03 | ✅ PASS (với guards QT-1..4) |
+| Quản lý quyền theo Role | Kiểm soát phân quyền | REQ-25 | AC-US-01-04-01 | ⚠️ PARTIAL — BUG-013: FM mở được /admin/users; BUG-014: Requester mở được /predictions |
 | Xem ma trận quyền cố định | Tham chiếu quyền của từng Role | REQ-25 | AC-US-01-04-01 | ✅ PASS |
-| Mapping Asset ↔ IoT Device | Quản lý kết nối thiết bị | REQ-26, REQ-27 | AC-US-05-01-01 | ✅ PASS |
+| Mapping Asset ↔ IoT Device | Quản lý kết nối thiết bị | REQ-26, REQ-27 | AC-US-05-01-01 | ⚠️ PARTIAL — BUG-010: thiếu gỡ liên kết/sửa Device ID |
 | Đăng xuất | Kết thúc phiên | Implicit | AC-US-01-01-03 | ✅ PASS |
 
-**Tóm tắt:** Chức năng quản trị cơ bản hoạt động. Có guards chặn leo thang quyền (QT-1..4).
+**Tóm tắt:** Chức năng quản trị cơ bản hoạt động. Có guards chặn leo thang quyền (QT-1..4). ⚠️ FE chưa bọc guard route /admin, /predictions (BUG-013, BUG-014); IoT Mapping thiếu nút gỡ/sửa (BUG-010).
 
 ---
 
@@ -141,7 +141,7 @@ Mục này mô tả các tính năng, thay đổi và vấn đề trong phiên b
 | **Bảo mật** | Bảo vệ API bằng JWT Bearer token | NFR-01, SEC-01 | Middleware `[Authorize]`, test AC-AUTH-04 | ✅ ĐÃ XÁC NHẬN |
 | **Bảo mật** | Áp dụng kiểm soát quyền sở hữu dữ liệu (Requester/Technician) | NFR-01, SEC-02 | Kiểm tra ở Service layer | ✅ ĐÃ XÁC NHẬN |
 | **Cơ sở dữ liệu** | Tự động migrate khi khởi động | Implicit | `MigrateAsync()` trong `Program.cs` | ✅ ĐÃ XÁC NHẬN |
-| **Cơ sở dữ liệu** | Tự động seed dữ liệu demo (4 users, 7 assets, IoT mappings) | Implicit | `DbSeeder.SeedAsync()` | ✅ ĐÃ XÁC NHẬN |
+| **Cơ sở dữ liệu** | Tự động seed dữ liệu demo (7 users, 78 assets, IoT mappings) | Implicit | `DbSeeder.SeedAsync()` | ✅ ĐÃ XÁC NHẬN |
 | **Bộ kiểm thử** | 65 bài kiểm thử backend (unit + integration) | Implicit | xUnit tests, phù hợp CI/CD | ✅ ĐÃ XÁC NHẬN |
 
 ---
@@ -154,18 +154,16 @@ N/A — Đây là bản phát hành MVP đầu tiên.
 
 ### 4.3. Đã sửa
 
-N/A — Chưa có phiên bản trước để đối chiếu các bản sửa.
+**Đã sửa trong vòng test:** BUG-001, BUG-002, BUG-003, BUG-004, BUG-005, BUG-006, BUG-009, BUG-012 (8 bug, đã kiểm tra lại Pass).
 
-Tuy nhiên, các vấn đề đã xác định trong quá trình phát triển (được theo dõi trong `code-review.md`):
-- BUG-006: Chưa có bài E2E Playwright (dự kiến sprint tới)
-- BUG-007: Nhãn mức độ cảnh báo IoT bằng tiếng Anh (có tính thẩm mỹ, ưu tiên thấp)
-- BUG-008: Nhãn mức độ rủi ro bằng tiếng Anh (có tính thẩm mỹ, ưu tiên thấp)
-- BUG-009: Chưa có nút "Unmap" cho IoT Device (ưu tiên trung bình)
-- BUG-010: Chưa có giao diện chỉnh sửa Device ID cho IoT Mapping (ưu tiên trung bình)
-- BUG-011: Route `/admin` chưa bọc `RequireRoles` guard (UX trung bình, API vẫn chặn)
-- BUG-012: Chưa có giao diện cấu hình khoảng thời gian thu thập IoT (ưu tiên trung bình)
-- BUG-013: Route `/alerts`, `/predictions` chưa bọc `RequireRoles` (UX trung bình, API vẫn chặn)
-- BUG-014: Nhãn menu Work Order bằng tiếng Anh (có tính thẩm mỹ, ưu tiên thấp)
+**Các bug còn mở (6 bug Open):**
+
+- **BUG-007** (Cosmetic) — TC_UC04.2_05: Trang Work Order còn lẫn tiếng Anh ("Work Order", "Đổi KT"). Pill trạng thái đã Việt.
+- **BUG-008** (Cosmetic) — TC_UC05.1_02: Hiển thị raw metric (power_status, temperature) và mức độ High bằng tiếng Anh.
+- **BUG-010** (Minor) — TC_UC05.2_03: Thiếu thao tác gỡ liên kết hoặc sửa Device ID. Backend chỉ có POST/PUT, chưa có DELETE.
+- **BUG-011** (Cosmetic) — TC_UC06.1_03: Mức rủi ro AI còn High/Medium chưa Việt hóa.
+- **BUG-013** (Minor) — TC_UC07.2_03: FM mở được /admin/users bằng URL trực tiếp (chưa tự chuyển trang). API vẫn chặn.
+- **BUG-014** (Minor) — TC_UC07.2_04: Requester mở được /predictions bằng URL trực tiếp và thấy chữ thô "Forbidden". API vẫn chặn.
 
 ---
 
@@ -182,7 +180,7 @@ Tuy nhiên, các vấn đề đã xác định trong quá trình phát triển (
 | Không có secrets trong repo (chỉ có `.env.example`) | ✅ PASS | Review mã nguồn các commit |
 | Kiểm soát quyền sở hữu dữ liệu (Requester/Technician) | ✅ PASS | Kiểm tra ở tầng Service |
 
-**Trạng thái bảo mật:** ✅ **Không phát hiện lỗ hổng Critical/High.** Có 2 vấn đề UX mức trung bình (route guard frontend), 6 vấn đề thẩm mỹ mức thấp (nhãn).
+**Trạng thái bảo mật:** Không có Blocker/Major. 6 bug mở: 3 Minor (BUG-010, BUG-013, BUG-014), 3 Cosmetic (BUG-007, BUG-008, BUG-011).
 
 ---
 
@@ -192,42 +190,43 @@ Tuy nhiên, các vấn đề đã xác định trong quá trình phát triển (
 |---|---|---|---|---|
 | REQ-02: Lọc tài sản theo phòng cho Requester (UI chưa có) | Thấp – Trung bình | AC-US-01-02 | Backend đã sẵn sàng, UI chưa triển khai | Chuyển sang "Should Have" cho v1.1 hoặc bổ sung UI ở sprint tới |
 | US-01-04: Mơ hồ về cập nhật quyền Admin | Thấp | AC-US-01-04-02 | Ma trận quyền cố định, không phải cập nhật động | Làm rõ ý định AC: chỉ xem ma trận hay cho phép cấu hình động |
-| BUG-011, BUG-013: Chưa có frontend route guard | Thấp (API vẫn chặn) | Implicit | Route tải mà không có `RequireRoles` wrapper | Bọc routes bằng `RequireRoles` |
-| BUG-012: Chưa có UI cấu hình interval IoT | Trung bình | NFR-05 | Interval cố định 5 phút | Thêm giao diện cấu hình |
-| BUG-009, BUG-010: Chưa có UI Unmap/Edit mapping | Trung bình | REQ-26, REQ-27 | Backend hỗ trợ DELETE/PUT, nhưng UI chưa có | Thêm nút Unmap & Edit |
+| BUG-013, BUG-014: Chưa có frontend route guard cho /admin/users, /predictions | Thấp (API vẫn chặn) | REQ-25 | Route tải mà không có `RequireRoles` wrapper | Bọc routes bằng `RequireRoles` |
+| BUG-010: IoT Mapping thiếu gỡ liên kết/sửa Device ID | Trung bình | REQ-26, REQ-27 | Backend chỉ có POST/PUT, chưa có DELETE. Frontend chưa có nút gỡ/sửa | Cần bổ sung endpoint DELETE ở backend VÀ nút Gỡ/Sửa ở frontend |
+| BUG-007: Trang Work Order còn lẫn tiếng Anh | Thấp (thẩm mỹ) | NFR-07 | Tiêu đề trang, menu, nút "Đổi KT" chưa thuần Việt | Dịch sang tiếng Việt |
+| BUG-008: IoT Alert raw metric + mức độ tiếng Anh | Thấp (thẩm mỹ) | NFR-07 | Cột chỉ số còn power_status/temperature, mức độ còn High | Map nhãn metric + dịch severity |
+| BUG-011: AI Risks mức rủi ro tiếng Anh | Thấp (thẩm mỹ) | NFR-07 | Cột rủi ro còn High/Medium | Dịch High → Cao, Medium → Trung bình |
 | Tái vô hiệu hóa session sau khi thay đổi role / tài khoản | Thấp – Trung bình | NFR-02 | Chưa triển khai; token tiếp tục hợp lệ đến khi hết hạn | Quyết định chính sách: hủy ngay hoặc để hết hạn tự nhiên |
-| Nhãn tiếng Anh (BUG-007, 008, 014) | Thấp (thẩm mỹ) | NFR-07 | Mức độ cảnh báo, mức độ rủi ro, menu item | Dịch sang tiếng Việt |
 
 ---
 
 ## 5. Acceptance and Verification Summary
 
-| Story/Requirement | AC ID | Expected Outcome | Verification Evidence | Status |
-|---|---|---|---|---|
-| **REQ-01** (Login) | AC-US-01-01-01/02/03 | Người dùng đăng nhập, thấy menu theo vai trò | xUnit test: `LoginTests.Success`, manual test | ✅ PASS |
-| **REQ-02** (Requester asset access by room) | AC-US-01-02-01/02 | Requester chỉ thấy tài sản được phép | Backend filter logic + (UI pending) | ⚠️ PARTIAL |
-| **REQ-04** (Create Request) | AC-US-03-01-01 | Requester tạo request, nhận trạng thái Submitted | xUnit: `CreateRequestApiTests.PostRequest_ValidRequester_Returns201_Submitted` | ✅ PASS |
-| **REQ-05** (Track Request) | AC-US-03-02-01 | Requester xem yêu cầu của mình | xUnit: `RequestServiceTests.Create_Valid_PersistsSubmitted_WithJwtRequesterId` | ✅ PASS |
-| **REQ-06** (Create Asset) | AC-US-02-01-01 | FM tạo asset thành công | xUnit: `CreateAssetApiTests.PostAssets_ValidFacilityManager_Returns201_AndPersists` | ✅ PASS |
-| **REQ-08** (Update Asset Status) | AC-US-02-03-01 | FM thay đổi trạng thái asset | Integration test; manual verified | ✅ PASS |
-| **REQ-09** (View IoT Data) | AC-US-05-03-01 | FM/Tech xem metrics IoT | xUnit: `IotApiTests.GetIotData_*` | ✅ PASS |
-| **REQ-10** (IoT Alert) | AC-US-05-04-01 | Alert được tạo khi vượt ngưỡng | xUnit: `IotApiTests` alert tests | ✅ PASS |
-| **REQ-11, REQ-12** (AI Prediction) | AC-US-06-01/02/03 | Dự đoán có mức độ rủi ro | xUnit: `PredictionApiTests.GetPrediction_*` | ✅ PASS |
-| **REQ-13** (Handle Request) | AC-US-03-03-01 | FM xử lý request | Integration test | ✅ PASS |
-| **REQ-14** (Create Work Order) | AC-US-04-01-01 | FM tạo WO, gán tech | xUnit: `CreateWorkOrderApiTests.PostWorkOrder_ValidManager_Returns201_Assigned` | ✅ PASS |
-| **REQ-15** (Assign Technician) | AC-US-04-02-01 | FM gán tech cho WO | xUnit: `WorkOrderServiceTests` | ✅ PASS |
-| **REQ-17** (Technician view WO) | AC-US-04-04-01 | Tech thấy WO của mình | Integration test; manual verified | ✅ PASS |
-| **REQ-20** (Technician update WO) | AC-US-04-05-01 | Tech cập nhật trạng thái (Assigned → In Progress) | xUnit: `WorkOrderServiceTests` | ✅ PASS |
-| **REQ-21, REQ-22** (Complete WO) | AC-US-04-06-01/02 | Tech ghi nhận kết quả, WO hoàn thành | xUnit: completion tests | ✅ PASS |
-| **REQ-24** (Manage Users) | AC-US-01-03-01/02 | Admin tạo user | xUnit: `UserServiceTests` | ✅ PASS |
-| **REQ-25** (Manage Roles) | AC-US-01-04-01/02/03 | Admin gán vai trò (có guards) | xUnit: QT-1..4 test cases | ✅ PASS |
-| **REQ-26, REQ-27** (IoT Mapping) | AC-US-05-01/02 | Admin map thiết bị vào asset | xUnit: mapping tests | ✅ PASS |
-| **NFR-01** (RBAC) | Multiple | Phân quyền theo vai trò được thực thi | 11 auth/authz tests (401/403) | ✅ PASS |
-| **NFR-02** (Password Security) | Implicit | Mật khẩu được hash, không plaintext | Code review + BCrypt lib | ✅ PASS |
-| **NFR-03** (Data Consistency) | BR-06, BR-18 | 1 Request → 1 WO; Request chỉ đóng sau khi WO hoàn tất | Integration tests | ✅ PASS |
-| **NFR-04** (Timestamp) | Multiple | createdAt, updatedAt, detectedAt, predictedAt hiện hữu | Database schema + seed data | ✅ PASS |
+| Story/Requirement | AC ID | Test case | Expected Outcome | Verification Evidence | Status |
+|---|---|---|---|---|---|
+| **REQ-01** (Login) | AC-US-01-01-01/02/03 | TC_UC01.1_01..09, TC_UC01.2_01..02 | Người dùng đăng nhập, thấy menu theo vai trò | xUnit test: `LoginTests.Success`, manual test | ✅ PASS |
+| **REQ-02** (Requester asset access by room) | AC-US-01-02-01/02 | TC_UC03.1_02, TC_UC02.2_01, TC_UC02.2_02 | Requester chỉ thấy tài sản được phép | Backend filter logic + (UI pending) | ⚠️ PARTIAL |
+| **REQ-04** (Create Request) | AC-US-03-01-01 | TC_UC03.1_01..05 | Requester tạo request, nhận trạng thái Submitted | xUnit: `CreateRequestApiTests` | ✅ PASS |
+| **REQ-05** (Track Request) | AC-US-03-02-01 | TC_UC03.1_01, TC_UC03.1_05 | Requester xem yêu cầu của mình | xUnit: `RequestServiceTests` | ✅ PASS |
+| **REQ-06** (Create Asset) | AC-US-02-01-01 | TC_UC02.1_04 | FM tạo asset thành công | xUnit: `CreateAssetApiTests` | ✅ PASS |
+| **REQ-08** (Update Asset Status) | AC-US-02-03-01 | TC_UC02.1_06, TC_UC02.1_07 | FM thay đổi trạng thái asset | Integration test; manual verified | ✅ PASS |
+| **REQ-09** (View IoT Data) | AC-US-05-03-01 | TC_UC05.1_01 | FM/Tech xem metrics IoT | xUnit: `IotApiTests.GetIotData_*` | ✅ PASS |
+| **REQ-10** (IoT Alert) | AC-US-05-04-01 | TC_UC05.1_01..03 | Alert được tạo khi vượt ngưỡng | xUnit: `IotApiTests` alert tests | ⚠️ PARTIAL — BUG-008 |
+| **REQ-11, REQ-12** (AI Prediction) | AC-US-06-01/02/03 | TC_UC06.1_01..04 | Dự đoán có mức độ rủi ro | xUnit: `PredictionApiTests` | ⚠️ PARTIAL — BUG-011 |
+| **REQ-13** (Handle Request) | AC-US-03-03-01 | TC_UC03.2_01 | FM xử lý request | Integration test | ✅ PASS |
+| **REQ-14** (Create Work Order) | AC-US-04-01-01 | TC_UC04.1_01..02 | FM tạo WO, gán tech | xUnit: `CreateWorkOrderApiTests` | ✅ PASS |
+| **REQ-15** (Assign Technician) | AC-US-04-02-01 | TC_UC04.1_02, TC_UC04.1_03 | FM gán tech cho WO | xUnit: `WorkOrderServiceTests` | ✅ PASS |
+| **REQ-17** (Technician view WO) | AC-US-04-04-01 | TC_UC04.2_01 | Tech thấy WO của mình | Integration test; manual verified | ✅ PASS |
+| **REQ-20** (Technician update WO) | AC-US-04-05-01 | TC_UC04.2_02..04 | Tech cập nhật trạng thái | xUnit: `WorkOrderServiceTests` | ✅ PASS |
+| **REQ-21, REQ-22** (Complete WO) | AC-US-04-06-01/02 | TC_UC04.2_03 | Tech ghi nhận kết quả, WO hoàn thành | xUnit: completion tests | ✅ PASS |
+| **REQ-24** (Manage Users) | AC-US-01-03-01/02 | TC_UC07.1_01..04 | Admin tạo/quản lý user | xUnit: `UserServiceTests` | ✅ PASS |
+| **REQ-25** (Manage Roles) | AC-US-01-04-01/02/03 | TC_UC07.1_02, TC_UC07.2_01..04 | Admin gán vai trò (có guards) | xUnit: QT-1..4 test cases | ⚠️ PARTIAL — BUG-013, BUG-014 |
+| **REQ-26, REQ-27** (IoT Mapping) | AC-US-05-01/02 | TC_UC05.2_01..03 | Admin map thiết bị vào asset | xUnit: mapping tests | ⚠️ PARTIAL — BUG-010 |
+| **NFR-01** (RBAC) | Multiple | TC_UC07.2_01..04 | Phân quyền theo vai trò được thực thi | 11 auth/authz tests (401/403) | ⚠️ PARTIAL (API ✅, FE ⚠️) |
+| **NFR-02** (Password Security) | Implicit | — | Mật khẩu được hash, không plaintext | Code review + BCrypt lib | ✅ PASS |
+| **NFR-03** (Data Consistency) | BR-06, BR-18 | TC_UC04.1_01..04 | 1 Request → 1 WO; Request chỉ đóng sau khi WO hoàn tất | Integration tests | ✅ PASS |
+| **NFR-04** (Timestamp) | Multiple | — | createdAt, updatedAt, detectedAt, predictedAt hiện hữu | Database schema + seed data | ✅ PASS |
 
-**Tóm tắt:** 23 yêu cầu Must-have đã được xác minh với trạng thái Pass. 1 yêu cầu (REQ-02) đang ở trạng thái Partial (backend đã sẵn sàng, UI đang chờ triển khai).
+**Tóm tắt:** 47/53 test case UI Pass, 6 Failed. Trong số các yêu cầu Must-have, phần lớn đã Pass; 4 yêu cầu ở trạng thái Partial do bug Cosmetic/Minor chưa sửa (BUG-007, BUG-008, BUG-010, BUG-011, BUG-013, BUG-014). 1 yêu cầu (REQ-02) Partial do UI chưa triển khai.
 
 ---
 
@@ -235,16 +234,16 @@ Tuy nhiên, các vấn đề đã xác định trong quá trình phát triển (
 
 | Khu vực | Kết quả mong đợi | Trạng thái | Bằng chứng | Hành động còn lại |
 |---|---|---|---|---|
-| **Authentication & Authorization** | 4 vai trò với quyền riêng biệt, không leo thang quyền | ✅ PASS | 65 tests (11 auth-focused), không có bug Critical | Làm rõ mục đích US-01-04; cân nhắc chốt chính sách session |
-| **Asset Management** | CRUD, tracking trạng thái, hỗ trợ location | ✅ PASS | AC-US-02 verified; 7 seed assets | Kiểm tra đầy đủ REQ-02 (room filtering) UI |
-| **Maintenance Request** | Chu kỳ đầy đủ (Submitted → Closed), quyền sở hữu riêng | ✅ PASS | AC-US-03 verified; ownership tests pass | Không có |
-| **Work Order** | Chu kỳ đầy đủ (Assigned → Completed), quyền sở hữu kỹ thuật viên, ghi result | ✅ PASS | AC-US-04 verified; ownership tests pass | Thêm UI chỉnh sửa Device ID cho IoT Mapping (BUG-010) |
-| **IoT Mapping/Monitoring** | Mapping device, ingest dữ liệu, tạo cảnh báo | ✅ PASS | AC-US-05 verified; API key auth confirmed | Thêm UI Unmap (BUG-009); UI config interval (BUG-012) |
-| **AI Prediction** | Dự báo 7 ngày, phân loại mức rủi ro | ✅ PASS | AC-US-06 verified; background service runs | Dịch nhãn nguy cơ sang tiếng Việt (BUG-008) |
-| **Acceptance Criteria/Test Evidence** | 23 AC core must-have đã xác minh | ✅ PASS | 65 backend tests; 30 smoke tests; manual verification | 1 AC partial (REQ-02 UI); 9 AC chưa test đầy đủ (liệt kê trong issue log) |
-| **Known Issues** | Vấn đề đã được theo dõi, ưu tiên rõ, không có bug Critical/High | ✅ PASS | BUG log trong `code-review.md`; 2 Medium (UX), 6 Low (thẩm mỹ) | Fix BUG-009 đến BUG-014 ở sprint tiếp theo; quyết định chính sách session |
-| **Security** | Không truy cập trái phép, bảo vệ dữ liệu, audit trail | ✅ PASS | JWT+RBAC+BCrypt đã xác minh; không có secrets trong repo | Thêm frontend route guards (BUG-011, BUG-013) để cải thiện UX |
-| **Documentation** | Mô hình traceability, AC, test evidence rõ ràng | ✅ PASS | `authn-authz.md` hoàn chỉnh; `release-notes.md` đầy đủ | Làm rõ phạm vi REQ-02 cho phiên bản tới |
+| **Authentication & Authorization** | 4 vai trò với quyền riêng biệt, không leo thang quyền | ✅ PASS | 65 xUnit tests (11 auth-focused), không có bug Blocker/Major | Làm rõ mục đích US-01-04; cân nhắc chốt chính sách session |
+| **Asset Management** | CRUD, tracking trạng thái, hỗ trợ location | ✅ PASS | TC_UC02.1_01..07 verified; 78 assets (test case) | Kiểm tra đầy đủ REQ-02 (room filtering) UI |
+| **Maintenance Request** | Chu kỳ đầy đủ (Submitted → Closed), quyền sở hữu riêng | ✅ PASS | TC_UC03.1_01..05 verified; ownership tests pass | Không có |
+| **Work Order** | Chu kỳ đầy đủ (Assigned → Completed), quyền sở hữu kỹ thuật viên, ghi result | ⚠️ PARTIAL | TC_UC04.1_01..04, TC_UC04.2_01..05 verified; BUG-007 label | Dịch tiêu đề/menu Work Order sang tiếng Việt (BUG-007) |
+| **IoT Mapping/Monitoring** | Mapping device, ingest dữ liệu, tạo cảnh báo | ⚠️ PARTIAL | TC_UC05.1_01..03, TC_UC05.2_01..03; BUG-008 label, BUG-010 thiếu gỡ/sửa | Bổ sung DELETE endpoint + nút gỡ/sửa (BUG-010); dịch metric (BUG-008) |
+| **AI Prediction** | Dự báo 7 ngày, phân loại mức rủi ro | ⚠️ PARTIAL | TC_UC06.1_01..04; BUG-011 label | Dịch nhãn mức rủi ro sang tiếng Việt (BUG-011) |
+| **Acceptance Criteria/Test Evidence** | 53 test case UI đã kiểm tra | ⚠️ PARTIAL | 47 Pass, 6 Failed; `test case_SmartMaintenance.md` + `Bug_Log_Smart_Maintenance.xlsx` | 6 bug Open (3 Minor + 3 Cosmetic) |
+| **Known Issues** | Vấn đề đã được theo dõi, ưu tiên rõ, không có Blocker/Major | ✅ PASS | Bug Log: 14 bug (8 Closed, 6 Open); 3 Minor (BUG-010, BUG-013, BUG-014), 3 Cosmetic (BUG-007, BUG-008, BUG-011) | Sửa 6 bug Open ở sprint tiếp theo |
+| **Security** | Không truy cập trái phép, bảo vệ dữ liệu, audit trail | ✅ PASS | JWT+RBAC+BCrypt đã xác minh; không có secrets trong repo | Thêm frontend route guards (BUG-013, BUG-014) để cải thiện UX |
+| **Documentation** | Mô hình traceability, AC, test evidence rõ ràng | ✅ PASS | `release-notes.md`, `test case_SmartMaintenance.md`, `Bug_Log_Smart_Maintenance.xlsx` đầy đủ | Làm rõ phạm vi REQ-02 cho phiên bản tới |
 
 ---
 
@@ -256,11 +255,11 @@ Tuy nhiên, các vấn đề đã xác định trong quá trình phát triển (
 
 #### Điều kiện chấp nhận:
 1. ✅ Core MVP flows (Reactive + Predictive Maintenance) đang hoạt động có bằng chứng.
-2. ✅ 65 bài kiểm thử backend đã pass (10/10/2026).
-3. ✅ 23 yêu cầu Must-have đã xác minh.
-4. ✅ Không có lỗ hổng bảo mật Critical/High.
-5. ⚠️ Chấp nhận 2 vấn đề UX trung bình (BUG-011, BUG-013: frontend route guards) — API layer vẫn chặn quyền truy cập.
-6. ⚠️ Chấp nhận 6 vấn đề thẩm mỹ thấp (BUG-007, 008, 014: nhãn; BUG-009, 010: tính năng UI tùy chọn; BUG-012: config).
+2. ✅ 47/53 test case UI Pass (6 Failed: 3 Minor, 3 Cosmetic).
+3. ✅ 65 test xUnit tồn tại trong SmartMaintenance.Tests; kết quả chạy: chưa có log đính kèm — cần chạy `dotnet test` và đính kèm kết quả.
+4. ✅ Không có bug Blocker/Major.
+5. ⚠️ Chấp nhận 3 Minor (BUG-010 IoT Mapping thiếu gỡ/sửa; BUG-013, BUG-014 FE route guard phân quyền) — API layer vẫn chặn quyền truy cập.
+6. ⚠️ Chấp nhận 3 Cosmetic (BUG-007, BUG-008, BUG-011: nhãn tiếng Anh chưa Việt hóa).
 7. ⚠️ Chấp nhận REQ-02 là "Should Have" (UI lọc room cho Requester chưa hoàn tất).
 8. ⚠️ Chấp nhận sự mơ hồ của US-01-04 (ma trận RBAC cố định, không phải cập nhật quyền động).
 9. ⚠️ Chấp nhận chính sách invalidation session đang chờ quyết định (token hết hạn tự nhiên, không hủy ngay khi đổi role).
@@ -269,17 +268,22 @@ Tuy nhiên, các vấn đề đã xác định trong quá trình phát triển (
 #### Không phải blocker:
 - ❌ Không tìm thấy vấn đề nào là blocker.
 
-#### Hành động còn lại trước khi phát hành chính thức (v1.0.1 hoặc v1.1):
-1. Thêm UI lọc tài sản theo phòng cho Requester (REQ-02).
-2. Làm rõ và cập nhật AC US-01-04 (chỉ xem ma trận hay cho phép cấu hình động?).
-3. Triển khai session invalidation khi thay đổi role/account.
-4. Thêm frontend route guards (`RequireRoles` wrapper cho `/admin`, `/alerts`, `/predictions`).
-5. Dịch nhãn tiếng Anh sang tiếng Việt (Alert severity, Risk level, Menu items).
-6. Thêm nút Unmap cho IoT Mapping.
-7. Thêm giao diện Edit Device ID cho IoT Mapping.
-8. Thêm UI cấu hình interval IoT.
-9. Thiết lập môi trường staging.
-10. Production hardening (TLS, WAF, secrets manager, monitoring).
+#### Remaining Actions (Hành động còn lại):
+
+**6 bug Open cần sửa:**
+1. BUG-007 (Cosmetic): Dịch tiêu đề/menu trang Work Order sang tiếng Việt.
+2. BUG-008 (Cosmetic): Map nhãn metric IoT + dịch mức độ cảnh báo sang tiếng Việt.
+3. BUG-010 (Minor): Bổ sung endpoint DELETE ở backend + nút gỡ/sửa IoT Mapping ở frontend.
+4. BUG-011 (Cosmetic): Dịch mức rủi ro AI (High → Cao, Medium → Trung bình).
+5. BUG-013 (Minor): Bọc route /admin/users bằng `RequireRoles` ở frontend.
+6. BUG-014 (Minor): Bọc route /predictions bằng `RequireRoles` ở frontend.
+
+**Việc chưa làm:**
+- Chạy `dotnet test` và đính kèm log kết quả vào tài liệu.
+- Thiết lập staging environment.
+- Production hardening (TLS, WAF, secrets manager, monitoring).
+- BA/PO xác nhận phạm vi REQ-02 (MUST vs. SHOULD HAVE).
+- Chốt Commit SHA cho bản v1.0.0-final.
 
 ---
 
@@ -297,8 +301,10 @@ Tuy nhiên, các vấn đề đã xác định trong quá trình phát triển (
 | Architecture | `docs/05-technical/system-architecture.md` | 3-tier design, microservices (AI, IoT) |
 | Security Review | `docs/06-test/security-nfr.md` | Auth, authorization, and NFR verification |
 | Code Review | `docs/06-test/code-review.md` | Implementation review, findings, BUG log |
-| Auth & Authz Spec | `docs/03-product/authn-authz.md` | **NEW** BA review of Authentication & Authorization (Review Required) |
+| Auth & Authz Spec | `docs/03-product/authn-authz.md` | BA review of Authentication & Authorization (Review Required) |
 | Test Strategy | `docs/06-test/test-strategy.md` | QA approach & coverage |
+| **Test Case UI** | `docs/06-test/test case_SmartMaintenance.md` | **53 test case giao diện (47 Pass, 6 Failed)** |
+| **Bug Log** | `docs/06-test/Bug_Log_Smart_Maintenance.xlsx` | **14 bug (8 Closed, 6 Open)** |
 | Source Priority | `docs/02-vault/source-priority.md` | Conflict resolution for Vault documents |
 
 ---
@@ -310,8 +316,8 @@ Tuy nhiên, các vấn đề đã xác định trong quá trình phát triển (
 | **Prepared by** | Business Analysis Team |
 | **Version** | v1.0 (Release Candidate) |
 | **Status** | Validation Pending |
-| **Last Updated** | 2026-10-10 |
-| **Commit Reference** | d9a52ac5936a6dec516604a5342e7ce28dd453e5 |
+| **Last Updated** | 2026-10-17 |
+| **Commit Reference** | d9a52ac5936a6dec516604a5342e7ce28dd453e5 *(cần xác minh — không có git repo local)* |
 | **Next Review** | After evaluation meeting or upon PO decision on open items |
 
 ---
