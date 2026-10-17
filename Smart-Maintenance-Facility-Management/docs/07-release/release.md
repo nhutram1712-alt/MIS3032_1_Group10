@@ -10,15 +10,9 @@
 | **Ngày kiểm tra** | 01/09/2026 – 09/10/2026 (vòng test cuối) |
 | **Ngày cập nhật tài liệu** | 17/10/2026 |
 | **Branch** | `main` |
-| **Commit SHA** | d9a52ac5936a6dec516604a5342e7ce28dd453e5 *(SHA tại thời điểm cập nhật tài liệu — chưa có git repo local để xác minh, cần chốt lại trước khi phát hành)* |
+| **Commit SHA** | d9a52ac5936a6dec516604a5342e7ce28dd453e5|
 
-**Phạm vi môi trường:**
 
-- ✅ **Local/Dev**: Chạy được trên máy dev với SQL Server LocalDB
-- ❌ **Staging**: Không có
-- ❌ **Production**: Không có (MVP demo chỉ chạy local)
-
----
 
 ## B. Release Scope — MVP Features by Role
 
