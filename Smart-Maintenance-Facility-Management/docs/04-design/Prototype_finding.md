@@ -147,7 +147,7 @@ FM xem cảnh báo IoT và dự đoán rủi ro AI để chủ động xác đ�
 
 ## Screen Flow Diagram (Mermaid)
 
-### Flow 1 & 2 — Requester & Facility Manager Flow
+### Flow 1 — Requester & Facility Manager Flow
 ```mermaid
 flowchart TD
     A[Trang Work Order - FM<br/>Stat 6 ô + Khối phân công<br/>+ Bảng danh sách] --> B{Dropdown yêu cầu}
