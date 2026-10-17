@@ -6,7 +6,7 @@
 |---|---|
 | **Tên dự án** | Smart Maintenance & Facility Management |
 | **Phiên bản mục tiêu** | v1.0.0-final (Release Candidate) |
-| **Trạng thái** | Validation Pending — Chưa publish, chưa deploy production |
+| **Trạng thái** | Validation Pending |
 | **Ngày kiểm tra** | 01/09/2026 – 09/10/2026 (vòng test cuối) |
 | **Ngày cập nhật tài liệu** | 17/10/2026 |
 | **Branch** | `main` |
